@@ -11,13 +11,13 @@ app.use(cors())
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mydatabase')
+mongoose.connect('mongodb+srv://Ibra:1234@online-store-dev.d2u6t.mongodb.net/?retryWrites=true&w=majority&appName=ONLINE-STORE-DEV')
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
 // Sample Route
 app.get('/', (req, res) => {
-    res.send('Online Stores Server');
+    res.send('Online Stores Server!');
 });
 
 // Start the Server
