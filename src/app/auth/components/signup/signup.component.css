@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.container form {
+    border: var(--gray) 1px solid;
+    border-radius: 4px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 424px;
+    height: 744px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container form .spans {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 600;
+    width: 422px;
+    height: 59px;
+    margin-bottom: 20px;
+}
+
+.container form .spans:first-child {
+    border-bottom: var(--pink) 4px solid;
+}
+
+.container form .spans span {
+    color: var(--custom-black);
+    font-size: 20px;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.container form .inputs {
+    display: flex;
+    flex-direction: column;
+    height: 656px;
+    margin-left: 30px;
+    row-gap: 7px;
+}
+
+.container form .inputs button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-maincolor);
+    color: var(--custom-white);
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 48px;
+    border-radius: 2px;
+    width: 360px;
+    height: 48px;
+    column-gap: 5px;
+}
+
+input {
+    border: 1px solid var(--gray);
+    border-radius: 2px;
+    width: 360px;
+    height: 44px;
+    margin-bottom: 10px;
+}
+
+label {
+    color: var(--custom-black);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+input::placeholder {
+    padding-left: 10px;
+}

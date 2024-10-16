@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="container">
+    <form [formGroup]="loginForm">
+        <div class="h1">
+            <h1>Log In</h1>
+        </div>
+        <div class="inputs">
+            <label for="email">Email Address</label>
+            <input type="email" formControlName="email" id="email">
+
+            <label for="pass">Password</label>
+            <input type="password" formControlName="pass" id="pass">
+
+            <button [disabled]="loginForm.invalid" (click)="Submit()">Log In<mat-icon>arrow_forward</mat-icon></button>
+
+            <div class="create">
+                <span> or <br></span>
+                <button>new to clicon? <a routerLink="/signup"> sign up </a> </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.container form {
+    border: var(--gray) 1px solid;
+    border-radius: 4px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 424px;
+    height: 504px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container form .h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: var(--pink) 4px solid;
+    width: 422px;
+    height: 59px;
+    margin-bottom: 20px;
+}
+
+.container form .h1 h1 {
+    color: var(--custom-black);
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+}
+
+.container form .inputs {
+    display: flex;
+    flex-direction: column;
+    height: 445px;
+    margin-left: 30px;
+    row-gap: 10px;
+}
+
+.container form .inputs button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-maincolor);
+    color: var(--custom-white);
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 48px;
+    border-radius: 2px;
+    width: 360px;
+    height: 48px;
+    column-gap: 5px;
+    margin-bottom: 30px;
+}
+
+input {
+    border: 1px solid var(--gray);
+    border-radius: 2px;
+    width: 360px;
+    height: 44px;
+    margin-bottom: 10px;
+}
+
+label {
+    color: var(--custom-black);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.container form .inputs .create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container form .inputs .create button {
+    background-color: transparent;
+    border: var(--gray) solid 1px;
+    color: var(--custom-black);
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+.container form .inputs .create button a {
+    color: var(--maincolor);
+    font-weight: 900;
+}
+
+.container form .inputs .create span {
+    color: #77878F;
+    font-size: 14px;
+    line-height: 20px;
+}

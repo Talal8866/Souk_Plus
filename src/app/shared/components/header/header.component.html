@@ -1,0 +1,23 @@
+<header class="container">
+    <nav class="header-nav">
+        <span class="logo">
+            <a routerLink="/">Clicon</a>
+        </span>
+        <input type="search" placeholder="Search for anything...">
+        <ul class="icons">
+            <li *ngIf="user !== null" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>your cart</li>
+            <li *ngIf="user == null" routerLink="/login"><mat-icon>login</mat-icon>login</li>
+            <li *ngIf="user !== null"><mat-icon>person</mat-icon></li>
+            <li *ngIf="user !== null" routerLink="/client-details">{{user?.fullname}}</li>
+        </ul>
+    </nav>
+    <nav class="bellow-nav">
+        <ul>
+            <li routerLink="/">Home</li>
+            <li routerLink="">Features</li>
+            <li routerLink="">Shops</li>
+            <li><a href="#shop-now">Products</a></li>
+            <li routerLink="/about-us">About Us</li>
+        </ul>
+    </nav>
+</header>

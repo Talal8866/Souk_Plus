@@ -1,0 +1,93 @@
+<app-header></app-header>
+
+<div class="landing">
+    <div class="left">
+        <h1>WHO <br> WE ARE</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt voluptatem voluptates deserunt dolore
+            beatae nihil quo inventore nemo, facilis neque autem cum cupiditate iure? Necessitatibus qui voluptates
+            repudiandae nisi repellat.</p>
+        <button><a href="#read">Read More</a></button>
+    </div>
+    <figure class="right">
+        <img src="../../../../assets/svg/undraw_engineering_team_a7n2.svg" alt="">
+    </figure>
+</div>
+
+<div class="about-us" id="read">
+    <figure class="left">
+        <img src="../../../../assets/svg/undraw_team_work_k-80-m (1).svg" alt="">
+    </figure>
+    <div class="right">
+        <h2>ABOUT <br> US</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi est aliquid porro fugiat, minus quas
+            tempora ipsam sed accusamus quidem autem inventore laudantium beatae. Odio vel corporis expedita? Libero,
+            temporibus.</p>
+    </div>
+</div>
+
+<div class="between-title">
+    <h3>our team</h3>
+</div>
+
+<div class="our-team">
+    <div class="card-container">
+        <div class="card">
+            <figure>
+                <img src="../../../../assets/svg/undraw_female_avatar_efig.svg" alt="">
+                <figcaption> <strong>ENG.Masa Matar</strong> <br> Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. </figcaption>
+            </figure>
+        </div>
+        <div class="card">
+            <figure>
+                <img src="../../../../assets/svg/undraw_pic_profile_re_7g2h.svg" alt="">
+                <figcaption> <strong>ENG.Talal Alsebai</strong> <br> Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. </figcaption>
+            </figure>
+        </div>
+        <div class="card">
+            <figure>
+                <img src="../../../../assets/svg/undraw_female_avatar_efig.svg" alt="">
+                <figcaption> <strong>ENG.Rowda Khalaf</strong> <br> Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. </figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<form [formGroup]="ContactForm" id="contactus">
+
+    <div class="right">
+        <span>contact us</span>
+
+        <input type="text" id="name" placeholder="Full Name" formControlName="name">
+        <div>
+            <small *ngIf="ContactForm.get('name')?.errors?.['required'] && ContactForm.get('name')?.dirty">Full Name
+                is required</small>
+        </div>
+
+        <input type="text" id="email" placeholder="Email Address" formControlName="email">
+        <div>
+            <small *ngIf="ContactForm.get('email')?.errors?.['required'] && ContactForm.get('email')?.dirty">email
+                is required</small>
+        </div>
+
+        <input type="text" id="name" placeholder="Type a Message" formControlName="message">
+        <div>
+            <small *ngIf="ContactForm.get('message')?.errors?.['required'] && ContactForm.get('message')?.dirty">Message
+                is required</small>
+        </div>
+
+        <button>send</button>
+    </div>
+
+
+    <div class="left">
+        <figure>
+            <img src="../../../../assets/svg/undraw_mail_sent_re_0ofv.svg" alt="">
+        </figure>
+    </div>
+
+</form>
+
+<app-footer></app-footer>
