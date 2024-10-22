@@ -1,12 +1,33 @@
 :root {
-    --maincolor: #94D0CC;
-    --dark-maincolor: #408E91;
-    --pink: #E49393;
-    --ligh-pink: #EEC4C4;
+    --maincolor: #98D8FE;
+    --dark-maincolor: #48BAFD;
+    --pink: #FE9E65;
+    --ligh-pink: #FEBE98;
     --gray: #EBEBEB;
-    --custom-white: white;
-    --custom-black: black;
+    --mid-gray: #77878F;
+    --dark-gray: #475156;
+    --custom-white: #FAFAFA;
+    --custom-black: #001523;
 
+    /* --dark-gray
+     رمادي غامق 
+     للكتابات الافتح من الأسود شوي
+     */
+
+    /* --mid-gray
+     رمادي غامق افتح شوي 
+     للكتابات الافتح من يلي قبلو
+     +character متل
+     زر حذف المنتجات مع add to cart الرمادي
+     -------or-------
+     Business, private الفاتحين
+    */
+
+    /* --gray
+      رمادي فاتح جداً
+      للbackgroud رمادي  
+      و كمان كلشي حواف مستطيلات مربعات
+    */
 }
 
 * {

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ProductserviceService } from 'src/app/products/services/productservice.service';
 
 @Component({
   selector: 'app-product',
@@ -6,6 +7,22 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-  // @Input() product: any;
+
+  constructor(private servive: ProductserviceService) { }
+
+  @Input() products: any = {};
+  @Input() categories: any = {};
+  @Output() item = new EventEmitter();
+
+  addbutton: boolean = false;
+  amount: number = 0;
+
+  add() {
+    this.item.emit({ item: this.products, quantity: this.amount })  // sending the product data as an objict
+  }
+
+  ngOnInit(): void {
+
+  }
 
 }

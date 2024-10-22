@@ -1,14 +1,16 @@
-<div class="container">
+<div class="container" *ngFor="let item of products">
     <div class="img-container">
-        <img src="" alt="">
-        <span><br>Clicon</span>
+        <img src="{{item.image}}" alt="" routerLink="/product-details/{{item.id}}">
+        <span><br>{{item.shop}}</span>
     </div>
+
     <div class="details">
-        <p>Samsung Electronics Samsung Galexy S21 5G</p>
-        <span>200,000 syp</span>
-        <button>add to cart</button>
+        <p routerLink="/product-details/{{item.id}}">{{item.name}}</p>
+        <span>{{item.price}}</span>
+        <button *ngIf="!addbutton" (click)="addbutton = true">add to cart</button>
+        <div class="number" *ngIf="addbutton">
+            <input type="number" [(ngModel)]="amount">
+            <button (click)="add(); addbutton = false">Add</button>
+        </div>
     </div>
 </div>
-
-
-<!-- {{ product.price }} {{ product.name }}   -->

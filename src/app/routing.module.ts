@@ -12,28 +12,31 @@ import { CartDetailsComponent } from './cart/components/cart-details/cart-detail
 import { ProfileComponent } from './shop/components/profile/profile.component';
 import { EditProfileComponent } from './shop/components/edit-profile/edit-profile.component';
 import { ClientDetailsComponent } from './client/components/client-details/client-details.component';
-import { AllProductsComponent } from './products/components/all-products/all-products.component';
-import { AllShopsComponent } from './shop/all-shops/all-shops.component';
+import { AllShopsComponent } from './shop/components/all-shops/all-shops.component';
 import { ShopCardComponent } from './shared/components/shop-card/shop-card.component';
+import { ShopSignupComponent } from './auth/components/shop-signup/shop-signup.component';
+import { WishlistComponent } from './client/components/wishlist/wishlist.component';
+import { AllProductsComponent } from './products/components/all-products/all-products.component';
 
 const routes: Routes = [
   { path: "", component: ContentsComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
+  { path: "shop-signup", component: ShopSignupComponent },
   { path: "about-us", component: AboutUsComponent },
   { path: "header", component: HeaderComponent },
   { path: "footer", component: FooterComponent },
   { path: "product", component: ProductComponent },
-  { path: "product-details", component: ProductDetailsComponent },
+  { path: "product-details/:id", component: ProductDetailsComponent },
   { path: "cart-details", component: CartDetailsComponent },
-  { path: "profile", component: ProfileComponent },
+  { path: "profile/:id", component: ProfileComponent },
   { path: "edit-profile", component: EditProfileComponent },
-  { path: "all-prodcuts", component: AllProductsComponent },
   { path: "all-shops", component: AllShopsComponent },
   { path: "shop-card", component: ShopCardComponent },
-  { path: "client-details", component: ClientDetailsComponent }
+  { path: "client-details", component: ClientDetailsComponent },
+  { path: "wishlist", component: WishlistComponent },
+  { path: "all-products", component: AllProductsComponent }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

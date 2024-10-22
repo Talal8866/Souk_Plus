@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SharedModule } from '../shared/shared.module';
-import { AllShopsComponent } from './all-shops/all-shops.component';
+import { AllShopsComponent } from './components/all-shops/all-shops.component';
 
 
 @NgModule({
@@ -15,11 +15,13 @@ import { AllShopsComponent } from './all-shops/all-shops.component';
   imports: [
     CommonModule,
     SharedModule,
+
     
   ],
   exports: [
     ProfileComponent,
     EditProfileComponent,
+    // AllShopsComponent
   ]
 })
 export class ShopModule { }

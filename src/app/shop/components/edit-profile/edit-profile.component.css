@@ -1,0 +1,198 @@
+.main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 50px;
+    margin-top: 110px;
+    margin-bottom: 80px;
+    margin-left: 50px;
+}
+
+.main .left {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: var(--gray) 1px solid;
+    border-radius: 4px;
+    height: 191px;
+    width: 264px;
+    padding-left: 20px;
+}
+
+.main .left nav ul {
+    list-style: none;
+}
+
+.main .left nav ul li {
+    color: #5F6C72;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    column-gap: 15px;
+    height: 40px;
+    width: 239px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.main .right .topform {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    border: var(--gray) 1px solid;
+    border-radius: 4px;
+    width: 984px;
+    height: 593px;
+    margin-bottom: 40px;
+}
+
+.main .right .topform span {
+    display: flex;
+    align-items: center;
+    color: var(--custom-black);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    height: 51px;
+    width: 984px;
+    margin-left: 14px;
+}
+
+.main .right .topform hr {
+    border: var(--gray) 1px solid;
+}
+
+.main .right .topform form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    row-gap: 5px;
+    width: 960px;
+    height: 488px;
+    margin-top: 20px;
+    margin-left: 19.5px;
+}
+
+.main .right .topform form input {
+    border: var(--gray) 1px solid;
+    border-radius: 1px;
+    height: 44px;
+    width: 939px;
+    margin-bottom: 10px;
+}
+
+.main .right .topform form label {
+    color: var(--custom-black);
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    width: 936px;
+}
+
+.main .right .topform form button {
+    background-color: var(--dark-maincolor);
+    color: var(--custom-white);
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 1px;
+    height: 48px;
+    width: 161px;
+}
+
+.main .right .bottomform {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    border: var(--gray) 1px solid;
+    border-radius: 4px;
+    width: 984px;
+    height: 390px;
+    margin-bottom: 40px;
+}
+
+.main .right .bottomform span {
+    display: flex;
+    align-items: center;
+    color: var(--custom-black);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    height: 51px;
+    width: 984px;
+    margin-left: 14px;
+}
+
+.main .right .bottomform hr {
+    border: var(--gray) 1px solid;
+}
+
+.main .right .bottomform form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    row-gap: 5px;
+    width: 960px;
+    height: 424px;
+    margin-top: 20px;
+    margin-left: 19.5px;
+}
+
+.main .right .bottomform form input {
+    border: var(--gray) 1px solid;
+    border-radius: 1px;
+    height: 44px;
+    width: 939px;
+    margin-bottom: 10px;
+}
+
+.main .right .bottomform form label {
+    color: var(--custom-black);
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    width: 936px;
+}
+
+.main .right .bottomform form button {
+    background-color: var(--dark-maincolor);
+    color: var(--custom-white);
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 1px;
+    height: 48px;
+    width: 161px;
+}
+
+input::placeholder,
+input::content {
+    padding-left: 10px;
+}
+
+.main .right .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 125px;
+}
+
+.main .right .contact span a {
+    color: var(--maincolor);
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 155px;
+    font-weight: 900;
+}
+
+.main .right .contact p {
+    color: var(--custom-black);
+    font-size: 20px;
+    line-height: 28px;
+}

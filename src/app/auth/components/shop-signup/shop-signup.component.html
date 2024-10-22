@@ -1,0 +1,98 @@
+<app-header></app-header>
+
+<div class="container">
+
+    <form [formGroup]="shopForm" class="shop">
+        <div class="spans">
+            <span routerLink="/signup">Private</span>
+            <span routerLink="/shop-signup">Business</span>
+        </div>
+
+        <div class="inputs">
+            <label for="shopname">shop Name</label>
+            <input type="text" formControlName="shopname" id="shopname">
+            <div class="small">
+                <small *ngIf="shopForm.get('shopname')?.errors?.['required'] && shopForm.get('shopname')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <label for="shopcategory">Shop Category</label>
+            <select aria-placeholder="Select..." formControlName="shopcategory" id="shopcategory">
+                <option value="{{option}}" *ngFor="let option of categories">{{option}}</option>
+            </select>
+            <div class="small">
+                <small
+                    *ngIf="shopForm.get('shopcategory')?.errors?.['required'] && shopForm.get('shopcategory')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <label for="shopemail">Email Address</label>
+            <input type="email" formControlName="shopemail" id="shopemail">
+            <div class="small">
+                <small *ngIf="shopForm.get('shopemail')?.errors?.['required'] && shopForm.get('shopemail')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <label for="shopaddress">Address</label>
+            <input type="text" formControlName="shopaddress" id="shopaddress">
+            <div class="small">
+                <small
+                    *ngIf="shopForm.get('shopaddress')?.errors?.['required'] && shopForm.get('shopaddress')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <label for="shopnumber">Phone Number</label>
+            <input type="number" formControlName="shopnumber" id="shopnumber">
+            <div class="small">
+                <small
+                    *ngIf="shopForm.get('shopnumber')?.errors?.['required'] && shopForm.get('shopnumber')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <label for="shoppass">Password</label>
+            <input type="password" formControlName="pass" id="shoppass" placeholder="8+ characters">
+            <div class="small">
+                <small *ngIf="shopForm.get('pass')?.errors?.['required'] && shopForm.get('pass')?.dirty">Full Name
+                    is required</small>
+            </div>
+
+            <label for="shopconfirmpass">Confirm Password</label>
+            <input type="password" formControlName="confirmpass" id="shopconfirmpass">
+            <div class="small">
+                <small
+                    *ngIf="shopForm.get('confirmpass')?.errors?.['required'] && shopForm.get('confirmpass')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <label for="file-input">Upload Your Logo</label>
+            <div class="file-upload">
+                <button for="file-input" class="custom-file-label">Brows Files</button>
+                <input type="file" id="file-input" (change)="onFileSelected($event)">
+            </div>
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" />
+            <div class="small">
+                <small *ngIf="shopForm.get('Logo')?.errors?.['required'] && shopForm.get('Logo')?.dirty">Full
+                    Name
+                    is required</small>
+            </div>
+
+            <button [disabled]="shopForm.invalid || (shopForm.value.pass ==! shopForm.value.confirmpass)"
+                (click)="Submit2()" class="submit">Create Business Account<mat-icon>arrow_forward</mat-icon></button>
+
+            <div class="create">
+                <span> or <br></span>
+                <button>Already have account?<a routerLink="/login">login</a> </button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+<app-footer></app-footer>

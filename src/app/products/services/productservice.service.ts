@@ -1,18 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductserviceService {
 
-  // private apiUrl = 'https://your-api-url/products'; 
+  constructor(private http: HttpClient) { }
 
-  // constructor(private http: HttpClient) { }
+  getAllCategories() {
+    return this.http.get('http://localhost:3000/api/category'); // done
+  }
 
-  // getProducts(): Observable<any> {
-  //   return this.http.get<any>(this.apiUrl);
-  // }
+  // products services:
+  getProducts() {
+    return this.http.get('api');
+  }
+
+  getProducts_byCategories(keyWord: string) {
+    return this.http.get('api' + keyWord);
+  }
+
+  getProductByID(id: any) {
+    return this.http.get('http://localhost:3000/api/product/:productId' + id); // token
+  }
+
+  // shops services:
+  getShops() {
+    return this.http.get('http://localhost:3000/api/shop'); // done
+  }
+
+  getShops_byCategories(keyWord: string) {
+    return this.http.get('api' + keyWord);
+  }
+
+  getShopByID(id: any) {
+    return this.http.get('http://localhost:3000/api/shop/profile' + id); // token , user_type
+  }
 
 }

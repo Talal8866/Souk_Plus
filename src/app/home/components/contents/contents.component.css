@@ -50,7 +50,7 @@
 
 .landing .left p {
     color: var(--custom-black);
-    height: 109px;
+    height: 89px;
     width: 416px;
     font-size: 24px;
     line-height: 24px;
@@ -58,12 +58,12 @@
 
 .landing .left h1 {
     color: var(--custom-black);
-    font-size: 64px;
+    font-size: 48px;
     line-height: 59px;
     font-weight: 900;
-    height: 116px;
-    width: 362px;
-    margin-bottom: 50px;
+    height: 177px;
+    width: 507px;
+    margin-bottom: 20px;
     margin-top: 50px;
     text-transform: uppercase;
 }
@@ -87,7 +87,7 @@
 
 .categories {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .categories .title1 {
@@ -119,20 +119,50 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.categories .cards figure img {
+    border: 2px solid var(--gray);
+    border-radius: 20px;
     width: 197px;
     height: 236px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+}
+
+.categories .cards figure .img1 {
+    width: 185px;
+    height: 211px;
+}
+
+.categories .cards figure .img2 {
+    width: 163px;
+    height: 219px;
+}
+
+.categories .cards figure .img3 {
+    width: 197px;
+    height: 236px;
+}
+
+.categories .cards figure .img4 {
+    width: 172px;
+    height: 200px;
+}
+
+.categories .cards figure .img5 {
+    width: 185px;
+    height: 211px;
+}
+
+.categories .cards figure .img6 {
+    width: 197px;
+    height: 236px;
 }
 
 .categories .cards figure figcaption {
     color: var(--custom-black);
-    font-size: 24px;
+    font-size: 18px;
     text-transform: uppercase;
     font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    top: 30px;
 }
 
 .products {

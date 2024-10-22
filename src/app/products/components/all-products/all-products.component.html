@@ -1,9 +1,14 @@
 <app-header></app-header>
-<div class="all-products">
-    <app-product></app-product>
+<div class="categories">
+    <label>ategories</label>
+    <select (change)="filtercategory($event)">
+        <option value="all" selected>All</option>
+        <option value="{{option}}" *ngFor="let option of categories">{{option}}</option>
+    </select>
+</div>
+<div class="container">
+    <div class="for" *ngFor=" let item for products">
+        <app-product [products]=item (item)="addtocart($event)"></app-product>
+    </div>
 </div>
 <app-footer></app-footer>
-
-<p>all-products work</p>
-
-<!-- <app-product app-product *ngFor="let product of products" [product]="product"></app-product> -->

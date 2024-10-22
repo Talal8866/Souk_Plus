@@ -7,18 +7,17 @@ import { AuthServiceService } from './auth/services/auth.service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // title = process.env["API_KEY"] || 'DEF_A';
   title = 'Angular-project';
 
   constructor(private service: AuthServiceService) { }
 
-  ngOnInit(): void {
-    this.getuserdata()
-  }
+  // ngOnInit(): void {
+  //   this.getuserdata()
+  // }
 
-  getuserdata() {
-    this.service.get_role().subscribe(res => {
-      this.service.user.next(res);
-    })
-  }
+  // getuserdata() {
+  //   this.service.get_role().subscribe(res => {
+  //     this.service.user.next(res);
+  //   })
+  // }
 }

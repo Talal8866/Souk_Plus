@@ -11,7 +11,7 @@
     margin-top: 60px;
     margin-bottom: 60px;
     width: 424px;
-    height: 744px;
+    height: 854px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -21,12 +21,12 @@
     align-items: center;
     font-weight: 600;
     width: 422px;
-    height: 59px;
+    height: 60px;
     margin-bottom: 20px;
 }
 
 .container form .spans:first-child {
-    border-bottom: var(--pink) 4px solid;
+    border-bottom: var(--pink) 3.5px solid;
 }
 
 .container form .spans span {
@@ -60,6 +60,7 @@
     width: 360px;
     height: 48px;
     column-gap: 5px;
+    margin-bottom: 20px;
 }
 
 input {
@@ -67,7 +68,6 @@ input {
     border-radius: 2px;
     width: 360px;
     height: 44px;
-    margin-bottom: 10px;
 }
 
 label {
@@ -77,6 +77,63 @@ label {
     font-weight: 500;
 }
 
-input::placeholder {
+input::content{
     padding-left: 10px;
+}
+
+.small{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+small{
+    color: firebrick;
+    margin-left: -30px;
+}
+
+.container .shop .inputs select{
+    border: 1px solid var(--gray);
+    width: 360px;
+    height: 44px;
+}
+
+
+.container form .inputs .create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container form .inputs .create button {
+    background-color: transparent;
+    border: var(--gray) solid 1px;
+    color: var(--custom-black);
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: normal;
+    text-transform: capitalize;
+    margin-left: -30px;
+    margin-bottom: -20px;
+}
+
+.container form .inputs .create button a {
+    color: var(--maincolor);
+    font-weight: 900;
+}
+
+.container form .inputs .create span {
+    color: #77878F;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: -30px;
+    margin-bottom: 10px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

@@ -1,1 +1,66 @@
-<p>cart-details works!</p>
+<app-header></app-header>
+<div class="main">
+    <aside class="left">
+        <nav>
+            <ul>
+                <li routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>Shopping Cart</li>
+                <li routerLink="/wishlist"><mat-icon>favorite</mat-icon>wishlist</li>
+                <li><mat-icon>settings</mat-icon><a href="#settings">setting</a></li>
+                <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="right">
+        <div class="cart">
+            <div class="h1">
+                <h1>Shopping Cart</h1>
+            </div>
+            <div class="title-bar">
+                <ul>
+                    <li>product</li>
+                    <li>price</li>
+                    <li>Quantity</li>
+                    <li>sub-total</li>
+                </ul>
+            </div>
+            <div class="products" *ngFor="let item for cart_products; let index = index">
+                <button class="cancel" (click)="deleteProduct(index)"><mat-icon>cancel</mat-icon></button>
+                <div class="img">
+                    <img src="{{item.item.img}}" alt="">
+                </div>
+                <span class="title">{{item.item.title}}</span>
+                <span>{{item.item.price}} $</span>
+                <div class="quantity">
+                    <button class="plus" (click)="add_Quantity(index)">+</button>
+                    <input type="number" min="1" [(ngModel)]="item.quantity" (change)="detectChange()">
+                    <button class="minus" (click)="minus_Quantity(index)">-</button>
+                </div>
+                <span>{{item.item.price * item.quantity}}</span>
+            </div>
+            <hr>
+            <div class="actions">
+                <button routerLink="" class="back"><mat-icon>arrow_back</mat-icon> return to shop</button>
+                <button class="update">update cart</button>
+            </div>
+        </div>
+        <div class="totals">
+            <div class="h2">
+                <h2>Cart Totals</h2>
+            </div>
+            <div class="container">
+                <div class="sums">
+                    <ul>
+                        <li> <span>Sub-total</span> <span>{{total}} $</span> </li>
+                        <li> <span>Shipping</span> <span>{{Shipping}} $</span> </li>
+                        <li> <span>Discount</span> <span>{{Discount}} $</span> </li>
+                        <li> <span>Tax</span> <span>{{tax}} $</span> </li>
+                    </ul>
+                    <hr>
+                    <span class="total">Total</span><span>{{total + Discount + Shipping + tax}} $</span>
+                </div>
+                <button>Proceed to Checkout <mat-icon>arrow_forward</mat-icon></button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

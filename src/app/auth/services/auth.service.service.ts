@@ -9,21 +9,22 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient) { }
 
-  createuser_service(model: object) {
-    return this.http.post('api', model)
+  createuser_service(model: any) {
+    return this.http.post('http://localhost:3000/api/user/register', model)  // done
   }
 
-  loginuser_service(model: object) {
-    return this.http.put('api', model) //+login/1
+  createshop_service(model: any) {
+    return this.http.post('http://localhost:3000/api/shop/register', model) // done
   }
 
-  getusers_servive(model: object) {
-    return this.http.get('api') // + type
+  loginuser_service(model: any) {
+    return this.http.post('http://localhost:3000/api/user/login', model) // done
+  }
+
+  loginshop_service(model: any) {
+    return this.http.post('http://localhost:3000/api/shop/login', model) // done
   }
 
   user = new Subject();
-  get_role() {
-    return this.http.get('api') //+login/1
-  }
 
 }
