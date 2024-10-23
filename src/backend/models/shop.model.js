@@ -10,6 +10,8 @@ const shopSchema = new mongoose.Schema({
     required: true,
     unique: true,
     match: /.+\@.+\..+/,
+    trim: true,
+    lowercase: true,
   },
   password: {
     type: String,
@@ -47,7 +49,7 @@ const shopSchema = new mongoose.Schema({
     default: 0,
   },
   owners: {
-    type: [String],
+    type: String,
     required: true,
   },
 });

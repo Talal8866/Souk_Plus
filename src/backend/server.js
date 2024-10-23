@@ -1,4 +1,5 @@
 require('dotenv').config({ path: "./src/backend/config/.env" });
+const cors = require('cors');
 const express = require('express');
 const connectDB = require('./config/db');
 
@@ -11,6 +12,14 @@ const cartRoutes = require('./routes/cart.routes');
 
 const app = express();
 const PORT = process.env.PORT;
+
+// CORS Options
+const corsOptions = {
+  origin: 'https://localhost:4200',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Middleware to parse JSON requests
 app.use(express.json());
