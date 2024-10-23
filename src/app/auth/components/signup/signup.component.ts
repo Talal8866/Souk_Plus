@@ -27,11 +27,12 @@ export class SignupComponent {
 
   Submit1() {
     const model = {
-      fullname: this.signupForm.value.fullname,
+      name: this.signupForm.value.fullname,
       email: this.signupForm.value.email,
       address: this.signupForm.value.address,
-      number: this.signupForm.value.number,
-      pass: this.signupForm.value.pass
+      phoneNumber: this.signupForm.value.number,
+      password: this.signupForm.value.pass,
+      confirmPassword: this.signupForm.value.confirmpass,
     }
     this.service.createuser_service(model).subscribe(res => {
       alert("success")
