@@ -1,0 +1,29 @@
+<app-header></app-header>
+<form [formGroup]="addProductForm" class="main">
+    <section class="top">
+        <div class="left">
+            <div>
+                <input type="file" id="file-input" (change)="getimagepath($event)" formControlName="image">
+                <img src="{{base64}}" alt="">
+            </div>
+        </div>
+        <div class="right">
+            <div class="details">
+                <h1>add a product</h1>
+                <input formControlName="linkedShop" placeholder="shop name" value="{{name.shop_name}}" readonly>
+                <input formControlName="productname" placeholder="product name">
+                <input formControlName="category" placeholder="category" value="{{name.category}}" readonly>
+                <input formControlName="price" placeholder="add price">
+                <input formControlName="quantity" placeholder="add quantity" type="number">
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="bottom">
+        <label>Description</label>
+        <hr>
+        <input class="description" formControlName="description" placeholder="Add Description">
+    </section>
+    <button (click)="submitAdd()" class="submit" [disabled]="!addProductForm.valid">add product</button>
+</form>
+<app-footer></app-footer>

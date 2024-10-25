@@ -1,34 +1,31 @@
 <app-header></app-header>
-
 <main class="main">
     <section class="top">
         <div class="left">
             <figure>
-                <img src="{{data.product_img}}" alt="">
+                <img src="{{data.pictures}}" alt="">
             </figure>
         </div>
         <div class="right">
             <div class="details">
-                <h1>{{data.product_name}} </h1>
+                <h1>{{data.name}}</h1>
+                <span class="dark-gray">Shop Name: {{data.linkedShop}} </span>
                 <span class="dark-gray">Availability: {{data.availability}} </span>
-                <span class="dark-gray">Shop Name: {{data.shop_name}} </span>
                 <span class="dark-gray">Category: {{data.Category}} </span>
-                <span class="price">{{data.price}} </span>
+                <span class="price">${{data.price}}</span>
             </div>
             <hr>
             <div class="actions">
                 <button class="add-wish"><mat-icon>favorite</mat-icon>Add to Wishlist</button> <br>
                 <input type="number" class="down">
-                <button class="add-cart down" >Add to cart <mat-icon>shopping_cart</mat-icon></button>
+                <button class="add-cart down">Add to cart <mat-icon>shopping_cart</mat-icon></button>
             </div>
         </div>
     </section>
     <section class="bottom">
-        <div class="description">
-            <span>description</span>
-            {{data.description}} 
-        </div>
+        <label>description</label>
+        <hr>
+        <input class="description" value="{{data.description}}" readonly>
     </section>
 </main>
-
 <app-footer></app-footer>

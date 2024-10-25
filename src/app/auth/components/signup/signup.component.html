@@ -46,6 +46,9 @@
                     *ngIf="signupForm.get('confirmpass')?.errors?.['required'] && signupForm.get('confirmpass')?.dirty">Confirm
                     Password
                     is required</small>
+                <small
+                    *ngIf="signupForm.get('confirmpass')?.errors?.['passwordMismatch'] && signupForm.get('confirmpass')?.dirty">
+                    Passwords do not </small>
             </div>
             <button [disabled]="signupForm.invalid || (signupForm.value.pass ==! signupForm.value.confirmpass)"
                 (click)="Submit1()">Create Private Account<mat-icon>arrow_forward</mat-icon></button>

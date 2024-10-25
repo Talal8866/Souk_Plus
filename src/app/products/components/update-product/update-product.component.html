@@ -1,0 +1,29 @@
+<app-header></app-header>
+<form [formGroup]="updateProductForm" class="main">
+    <section class="top">
+        <div class="left">
+            <input type="file" id="file-input" (change)="getimagepath($event)" formControlName="image">
+            <img src="{{base64}}" alt="">
+        </div>
+        <div class="right">
+            <div class="details">
+                <h1>update product</h1>
+                <span><span>Shop Name:</span> {{name.shop_name}} </span>
+                <span><span>Category:</span> {{name.Category}} </span>
+                <input value="{{name.name}} " placeholder="product name" formControlName="productname">
+                <input value="{{name.availability}}" formControlName="availability" placeholder="availability">
+                <input value="{{name.price}}" formControlName="price" placeholder="add price">
+                <input value="{{name.quantity}}" formControlName="quantity" placeholder="add quantity" type="number">
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="bottom">
+        <label>Description</label>
+        <hr>
+        <input class="description" value="{{name.description}}" formControlName="description"
+            placeholder="Add Description">
+    </section>
+    <button (click)="submitUpdate()" class="submit">save changes</button>
+</form>
+<app-footer></app-footer>

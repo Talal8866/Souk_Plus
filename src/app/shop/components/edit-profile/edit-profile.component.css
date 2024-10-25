@@ -1,13 +1,18 @@
 .main {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.top {
+    display: flex;
     column-gap: 50px;
     margin-top: 110px;
-    margin-bottom: 80px;
     margin-left: 50px;
 }
 
-.main .left {
+.top .left {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     display: flex;
     flex-direction: column;
@@ -17,14 +22,15 @@
     height: 191px;
     width: 264px;
     padding-left: 20px;
+    margin-top: 20px;
 }
 
-.main .left nav ul {
+.top .left nav ul {
     list-style: none;
 }
 
-.main .left nav ul li {
-    color: #5F6C72;
+.top .left nav ul li {
+    color: var(--dark-gray);
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -110,7 +116,6 @@
     border-radius: 4px;
     width: 984px;
     height: 390px;
-    margin-bottom: 40px;
 }
 
 .main .right .bottomform span {
@@ -169,16 +174,22 @@
     width: 161px;
 }
 
-input::placeholder,
 input::content {
     padding-left: 10px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .main .right .contact {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 125px;
+    margin-left: 275px;
+    margin-top: 40px;
 }
 
 .main .right .contact span a {
@@ -195,4 +206,147 @@ input::content {
     color: var(--custom-black);
     font-size: 20px;
     line-height: 28px;
+}
+
+
+.maincontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.maincontainer .landing {
+    display: flex;
+    justify-content: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: var(--gray) 1px solid;
+    border-radius: 4px;
+    width: 984px;
+    height: 361px;
+}
+
+.maincontainer .landing .container {
+    display: flex;
+    column-gap: 20px;
+    width: 884px;
+    margin-top: 30px;
+}
+
+.maincontainer .landing .container .img {
+    border: 1px solid var(--pink);
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+}
+
+.maincontainer .landing .container .img img {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.maincontainer .landing .container .details {
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+}
+
+.maincontainer .landing .container .details h1 {
+    text-transform: capitalize;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 59px;
+    width: 263px;
+    height: 59px;
+}
+
+.maincontainer .landing .container .details input {
+    font-size: 24px;
+    line-height: 34px;
+    color: var(--dark-gray);
+    margin-top: 10px;
+    font-weight: 200;
+}
+
+.maincontainer .landing .container .details span {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    font-size: 15px;
+    color: var(--custom-black);
+    margin-top: 10px;
+    font-weight: 200;
+}
+
+.products {
+    display: flex;
+    align-items: center;
+    column-gap: 100px;
+    margin-left: 50px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+section .add-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+    width: 234px;
+    height: 320px;
+    background-color: #dceef9;
+    border-radius: 10px;
+    border: none;
+    color: var(--dark-maincolor);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+section .add-product span {
+    cursor: pointer;
+}
+
+section .add-product mat-icon {
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: var(--gray) solid 2px;
+    border-radius: 10px;
+    height: 320px;
+    width: 234px;
+}
+
+.product-container .edit {
+    background-color: transparent;
+    border: 1px solid var(--pink);
+    color: var(--pink);
+    cursor: pointer;
+    position: relative;
+    right: 101px;
+    top: 32px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.product-container .delete {
+    background-color: transparent;
+    border: 1px solid var(--pink);
+    color: var(--pink);
+    cursor: pointer;
+    position: relative;
+    left: 101px;
+    top: 3px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }

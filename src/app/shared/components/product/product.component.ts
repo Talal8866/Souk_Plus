@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductserviceService } from 'src/app/products/services/productservice.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class ProductComponent {
 
   @Input() products: any = {};
   @Input() categories: any = {};
+  @Input () shopProducts: any[] = [];
   @Output() item = new EventEmitter();
 
   addbutton: boolean = false;

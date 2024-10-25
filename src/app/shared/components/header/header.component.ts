@@ -7,16 +7,17 @@ import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
   constructor(private service: AuthServiceService) { }
 
+  currentUser: any = null;
   user: any = null;
 
   ngOnInit(): void {
-    this.service.user.subscribe((res: any) => {
-      // if(this.role){
-        this.user = res
-      // }
-    });
+    // this.service.user.subscribe((res: any) => {
+    //     this.user = res
+    // });
+    this.currentUser = this.service.getCurrentUser();
   }
+
+  
 }

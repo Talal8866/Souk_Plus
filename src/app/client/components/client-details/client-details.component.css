@@ -169,7 +169,6 @@
     width: 161px;
 }
 
-input::placeholder,
 input::content {
     padding-left: 10px;
 }
@@ -178,7 +177,7 @@ input::content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 125px;
+    margin-left: 275px;
 }
 
 .main .right .contact span a {
@@ -195,4 +194,10 @@ input::content {
     color: var(--custom-black);
     font-size: 20px;
     line-height: 28px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

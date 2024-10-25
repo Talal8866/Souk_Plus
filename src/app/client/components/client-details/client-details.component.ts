@@ -9,12 +9,10 @@ import { ClientServiceService } from '../../services/client-service.service';
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent {
-
   constructor(private fb: FormBuilder, private service_auth: AuthServiceService, private service: ClientServiceService) { }
 
   changepassForm!: FormGroup;
   editprofileForm!: FormGroup;
-
   @Input() type: string = "User"
 
   ngOnInit(): void {
@@ -37,7 +35,9 @@ export class ClientDetailsComponent {
     if (this.type === 'User') {
       this.service_auth.loginuser_service(model).subscribe(
         (res: any) => {
+          alert("you have logged out");
           this.service_auth.user.next(res);
+          console.log("res");
         },
         (error: any) => {
           console.error('Error during user logout:', error);
@@ -46,7 +46,9 @@ export class ClientDetailsComponent {
     } else {
       this.service_auth.loginshop_service(model).subscribe(
         (res: any) => {
+          alert("you have logged out");
           this.service_auth.user.next(res);
+          console.log("res");
         },
         (error: any) => {
           console.error('Error during shop logout:', error);
@@ -57,10 +59,10 @@ export class ClientDetailsComponent {
 
   Submit_Changes() {
     const model = {
-      fullname: this.editprofileForm.value.fullname,
+      name: this.editprofileForm.value.fullname,
       email: this.editprofileForm.value.email,
       address: this.editprofileForm.value.address,
-      number: this.editprofileForm.value.number
+      phoneNumber: this.editprofileForm.value.number
     }
     this.service.changeUserData(model).subscribe(res => {
       alert("success")
@@ -69,7 +71,7 @@ export class ClientDetailsComponent {
 
   Submit_pass() {
     const model = {
-      newpass: this.changepassForm.value.newpass
+      password: this.changepassForm.value.newpass
     }
     this.service.changeUserpassword(model).subscribe(res => {
       alert("success")

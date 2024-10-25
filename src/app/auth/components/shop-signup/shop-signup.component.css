@@ -77,22 +77,22 @@ label {
     font-weight: 500;
 }
 
-input::content{
+input::content {
     padding-left: 10px;
 }
 
-.small{
+.small {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-small{
+small {
     color: firebrick;
     margin-left: -30px;
 }
 
-.container .shop .inputs select{
+.container .shop .inputs select {
     border: 1px solid var(--gray);
     width: 360px;
     height: 44px;
@@ -105,7 +105,7 @@ small{
     justify-content: center;
     align-items: center;
     margin-left: -30px;
-    margin-top: 20px ;
+    margin-top: 20px;
 }
 
 .container form .inputs .create button {
@@ -129,49 +129,38 @@ small{
 }
 
 .container form .inputs .create span {
-    
     color: #77878F;
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 10px;
 }
 
-.container .shop .inputs input[type="file"]{
-    background-color: var(--gray);
-    height: 170px;
-    width: 250px;
-}
-
 .file-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: -30px;
-}
-
-.container .shop .file-upload .custom-file-label {
-    display: flex;
     justify-content: center;
-    align-items: center;
-    width: 140px;
-    height: 44px;
-    border: 2px solid var(--maincolor);
-    background-color: transparent;
-    color: var(--maincolor);
-    cursor: pointer;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    font-weight: bold;
-    border-radius: 2px;
+    margin-left: -30px;
 }
 
 #file-input {
     border-radius: 10px;
-    color: var(--gray);
+    color: transparent;
 }
 
 input[type="file"]::file-selector-button {
-    display: none;
+    border: 2px solid var(--maincolor);
+    background-color: transparent;
+    color: var(--maincolor);
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    left: 60px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    border-radius: 2px;
+    width: 140px;
+    height: 44px;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

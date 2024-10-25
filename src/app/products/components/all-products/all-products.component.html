@@ -7,8 +7,8 @@
     </select>
 </div>
 <div class="container">
-    <div class="for" *ngFor=" let item for products">
-        <app-product [products]=item (item)="addtocart($event)"></app-product>
+    <div class="for" *ngFor=" let item of products">
+        <app-product [products]="item" (item)="addtocart($event)"></app-product>
     </div>
 </div>
 <app-footer></app-footer>

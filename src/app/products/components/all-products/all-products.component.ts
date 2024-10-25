@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductserviceService } from '../../services/productservice.service';
-import { json } from 'stream/consumers';
+import { ShopServiceService } from 'src/app/shop/services/shop-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-all-products',
@@ -9,15 +10,19 @@ import { json } from 'stream/consumers';
 })
 export class AllProductsComponent {
 
-  constructor(private servive: ProductserviceService) { }
-
+  constructor(private route: ActivatedRoute, private Products_service: ProductserviceService, private shop_servive: ShopServiceService) {
+    this.name = this.route.snapshot.paramMap.get("id")
+  }
+  name: any = {}
   products: any[] = [];
   categories: any[] = [];
   cart_products: any[] = [];
+  shopProducts: any[] = [];
 
   ngOnInit() {
     this.getProducts_Here()
     this.getCategories_Here()
+    this.getShopProducts_Here()
   }
 
   filtercategory(event: any) {
@@ -31,15 +36,21 @@ export class AllProductsComponent {
   }
 
   getProducts_Here() {
-    this.servive.getProducts().subscribe((res: any) => {
+    this.Products_service.getProducts().subscribe((res: any) => {
       this.products = res;
     }, error => {
       alert("error")
     })
   }
 
+  getShopProducts_Here() {
+    this.shop_servive.getShopProducts(this.name).subscribe((res: any) => {
+      this.shopProducts = res;
+    })
+  }
+
   getCategories_Here() {
-    this.servive.getAllCategories().subscribe((res: any) => {
+    this.Products_service.getAllCategories().subscribe((res: any) => {
       this.products = res;
     }, error => {
       alert("error")
@@ -47,7 +58,7 @@ export class AllProductsComponent {
   }
 
   getProducts_byCategories_Here(keyWord: string) {
-    this.servive.getProducts_byCategories(keyWord).subscribe((res: any) => {
+    this.Products_service.getProducts_byCategories(keyWord).subscribe((res: any) => {
       this.products = res;
     })
   }

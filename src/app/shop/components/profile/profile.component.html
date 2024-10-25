@@ -1,1 +1,22 @@
-<p>profile works!</p>
+<app-header></app-header>
+<section class="maincontainer">
+    <div class="landing">
+        <div class="container">
+            <div class="img">
+                <img src="{{name.logo}}" alt="">
+            </div>
+            <div class="details">
+                <h1>{{name.name}}</h1>
+                <p>{{name.description}}</p>
+                <span> <mat-icon>mail</mat-icon>{{name.email}}</span>
+                <span> <mat-icon>call</mat-icon>{{name.phoneNumber}}</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="products" *ngFor=" let item of shopProducts">
+        <app-product [shopProducts]="item" routerLink="/product-details/{{item.id}}"></app-product>
+    </div>
+</section>
+<app-footer></app-footer>

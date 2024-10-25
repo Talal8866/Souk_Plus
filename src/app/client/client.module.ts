@@ -16,7 +16,8 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     SharedModule,
   ],
   exports: [
-    ClientDetailsComponent
+    ClientDetailsComponent,
+    WishlistComponent
   ]
 })
 export class ClientModule { }

@@ -21,7 +21,7 @@ import { AllShopsComponent } from './components/all-shops/all-shops.component';
   exports: [
     ProfileComponent,
     EditProfileComponent,
-    // AllShopsComponent
+    AllShopsComponent
   ]
 })
 export class ShopModule { }

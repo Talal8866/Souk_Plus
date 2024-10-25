@@ -17,6 +17,8 @@ import { ShopCardComponent } from './shared/components/shop-card/shop-card.compo
 import { ShopSignupComponent } from './auth/components/shop-signup/shop-signup.component';
 import { WishlistComponent } from './client/components/wishlist/wishlist.component';
 import { AllProductsComponent } from './products/components/all-products/all-products.component';
+import { UpdateProductComponent } from './products/components/update-product/update-product.component';
+import { AddProductComponent } from './products/components/add-product/add-product.component';
 
 const routes: Routes = [
   { path: "", component: ContentsComponent },
@@ -35,7 +37,9 @@ const routes: Routes = [
   { path: "shop-card", component: ShopCardComponent },
   { path: "client-details", component: ClientDetailsComponent },
   { path: "wishlist", component: WishlistComponent },
-  { path: "all-products", component: AllProductsComponent }
+  { path: "all-products", component: AllProductsComponent },
+  { path: "update-product", component: UpdateProductComponent },
+  { path: "add-product", component: AddProductComponent },
 ];
 
 @NgModule({

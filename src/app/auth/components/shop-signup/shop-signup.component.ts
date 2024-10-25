@@ -9,13 +9,11 @@ import { AuthServiceService } from '../../services/auth.service.service';
   styleUrls: ['./shop-signup.component.css']
 })
 export class ShopSignupComponent {
+  constructor(private routes: Router, private service: AuthServiceService) { }
 
   @Input() categories: any[] = [];
-
   shopForm!: FormGroup;
   imageUrl: string | ArrayBuffer | null = null;
-
-  constructor(private routes: Router, private service: AuthServiceService) { }
 
   ngOnInit() {
     this.shopForm = new FormGroup({
@@ -26,17 +24,19 @@ export class ShopSignupComponent {
       shopnumber: new FormControl(null, [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]),
       pass: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       confirmpass: new FormControl(null, [Validators.required]),
+      image: new FormControl(null, [Validators.required]),
     })
   }
 
   Submit2() {
     const model = {
-      shopname: this.shopForm.value.shopname,
-      shopcategory: this.shopForm.value.shopcategory,
+      name: this.shopForm.value.shopname,
+      shopCategory: this.shopForm.value.shopcategory,
       shopemail: this.shopForm.value.shopemail,
-      shopaddress: this.shopForm.value.shopaddress,
-      shopnumber: this.shopForm.value.shopnumber,
-      pass: this.shopForm.value.pass
+      address: this.shopForm.value.shopaddress,
+      shopNumber: this.shopForm.value.shopnumber,
+      password: this.shopForm.value.pass,
+      pictures: this.shopForm.value.pass,
     }
     this.service.createshop_service(model).subscribe(res => {
       alert("success")

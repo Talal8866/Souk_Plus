@@ -8,7 +8,6 @@ import { ProductserviceService } from '../../services/productservice.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-
   constructor(private route: ActivatedRoute, private service: ProductserviceService) {
     this.id = this.route.snapshot.paramMap.get("id")
   }

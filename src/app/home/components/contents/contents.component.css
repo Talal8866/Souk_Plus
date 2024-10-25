@@ -111,7 +111,7 @@
 .categories .cards {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .categories .cards figure {
@@ -126,33 +126,67 @@
 }
 
 .categories .cards figure .img1 {
-    width: 185px;
-    height: 211px;
+    width: 197px;
+    height: 236px;
 }
 
 .categories .cards figure .img2 {
-    width: 163px;
-    height: 219px;
+    position: relative;
+    top: 10px;
+    width: 197px;
+    height: 236px;
 }
 
 .categories .cards figure .img3 {
+    top: 30px;
+    left: 20px;
+    position: relative;
     width: 197px;
     height: 236px;
 }
 
 .categories .cards figure .img4 {
-    width: 172px;
-    height: 200px;
+    left: 15px;
+    position: relative;
+    width: 237px;
+    height: 236px;
 }
 
 .categories .cards figure .img5 {
-    width: 185px;
-    height: 211px;
+    width: 197px;
+    height: 236px;
 }
 
 .categories .cards figure .img6 {
     width: 197px;
     height: 236px;
+}
+
+.categories .cards figure .span1 {
+   
+}
+
+.categories .cards figure .span2 {
+    position: relative;
+    bottom: 10px;
+   
+}
+
+.categories .cards figure .span3 {
+    position: relative;
+   
+}
+
+.categories .cards figure .span4 {
+    position: relative;
+}
+
+.categories .cards figure .span5 {
+   
+}
+
+.categories .cards figure .span6 {
+   
 }
 
 .categories .cards figure figcaption {
