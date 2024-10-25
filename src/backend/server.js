@@ -1,6 +1,7 @@
 require('dotenv').config({ path: "./src/backend/config/.env" });
 const express = require('express');
 const connectDB = require('./config/db');
+const cors = require('cors');
 
 const userRoutes = require('./routes/user.routes');
 const shopRoutes = require('./routes/shop.routes');
@@ -9,8 +10,6 @@ const wishlistRoutes = require('./routes/wishlist.routes');
 const categoryRoutes = require('./routes/category.routes');
 const cartRoutes = require('./routes/cart.routes');
 
-const cors = require('cors');
-
 const app = express();
 
 const corsOptions = {
@@ -18,7 +17,7 @@ const corsOptions = {
     credentials: true
 };
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT;
 

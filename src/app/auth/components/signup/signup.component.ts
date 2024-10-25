@@ -25,6 +25,7 @@ export class SignupComponent {
   }
 
   Submit1() {
+<<<<<<< HEAD
     if (this.signupForm.valid && this.signupForm.errors === null) {
       const model = {
         name: this.signupForm.value.fullname,
@@ -56,6 +57,15 @@ export class SignupComponent {
       return { passwordMismatch: true };
     } else {
       return null;
+=======
+    const model = {
+      name: this.signupForm.value.fullname,
+      email: this.signupForm.value.email,
+      address: this.signupForm.value.address,
+      phoneNumber: this.signupForm.value.number,
+      password: this.signupForm.value.pass,
+      confirmPassword: this.signupForm.value.confirmpass,
+>>>>>>> 4c02cb183a8ce7fda41d4d2fa8a48bedbfef61ee
     }
   }
 }
