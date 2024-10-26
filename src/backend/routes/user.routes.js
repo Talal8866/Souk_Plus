@@ -10,6 +10,9 @@ router.post('/register', userController.registerUser);
 // Users Login
 router.post('/login', userController.loginUser);
 
+// Users Logout
+router.post('/logout', authenticateToken, userController.logoutUser);
+
 // Get Public User Profile
 router.get('/:userId', userController.getPublicProfile);
 

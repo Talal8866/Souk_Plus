@@ -47,7 +47,7 @@ exports.registerShop = async (req, res) => {
 
     await shop.save();
 
-    const token = jwt.sign({ id: shop._id, type: 'shop'}, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign({ id: shop._id, type: 'shop', version: shop.tokenVersion }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(201).json({ token, message: 'Shop registered successfully' });
   } catch (error) {
@@ -70,11 +70,21 @@ exports.loginShop = async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: shop._id, type: 'shop'}, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign({ id: shop._id, type: 'shop', version: shop.tokenVersion }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(200).json({ token, message: 'Login successful' });
   } catch (error) {
     res.status(500).json({ error: 'Error logging in' });
+  }
+};
+
+// Logout
+exports.logoutShop = async (req, res) => {
+try {
+    await Shop.findByIdAndUpdate(req.id, { $inc: { tokenVersion: 1 } });
+    res.status(200).json({ message: 'Logged shop out successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: 'Logout failed' });
   }
 };
 

@@ -52,6 +52,10 @@ const shopSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tokenVersion: {
+    type: Number,
+    default: 0
+  },
 });
 
 shopSchema.methods.calculateAverageRating = function() {

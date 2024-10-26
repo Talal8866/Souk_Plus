@@ -10,6 +10,9 @@ router.post('/register', shopController.registerShop);
 // Shops Login
 router.post('/login', shopController.loginShop);
 
+// Shops Logout
+router.post('/logout', authenticateToken, shopController.logoutShop);
+
 // Get Shops List
 router.get('/', shopController.getAllShops);
 

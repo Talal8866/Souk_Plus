@@ -1,15 +1,8 @@
-const userTypeValidator = (requiredType) => {
-  return (req, res, next) => {
-    const userType = req.userType;
-
-    if (userType !== requiredType) {
-      return res.status(403).json({
-        error: `Access denied: ${requiredType.charAt(0).toUpperCase() + requiredType.slice(1)}s only`,
-      });
-    }
-
-    next();
-  };
+const userTypeValidator = (allowedRoles) => (req, res, next) => {
+  if (!allowedRoles.includes(req.type)) {
+    return res.status(403).json({ message: 'Access forbidden: insufficient permissions.' });
+  }
+  next();
 };
 
 module.exports = userTypeValidator;
