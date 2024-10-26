@@ -35,11 +35,7 @@ exports.registerUser = async (req, res) => {
 
     await user.save();
 
-<<<<<<< HEAD
-    const token = jwt.sign({ id: user._id, type: 'user' }, process.env.JWT_SECRET, { expiresIn: '1d' });
-=======
     const token = jwt.sign({ id: user._id, type: 'user'}, process.env.JWT_SECRET, { expiresIn: '1d' });
->>>>>>> 56e7f94a71e014bfeef9900f95ee05e017ff0687
 
     res.status(201).json({ token, message: 'User registered and logged in successfully' });
   } catch (error) {
@@ -62,11 +58,7 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-<<<<<<< HEAD
-    const token = jwt.sign({ id: user._id, type: 'user' }, process.env.JWT_SECRET, { expiresIn: '1d' });
-=======
     const token = jwt.sign({ id: user._id, type: 'user'}, process.env.JWT_SECRET, { expiresIn: '1d' });
->>>>>>> 56e7f94a71e014bfeef9900f95ee05e017ff0687
 
     res.status(200).json({ token, message: 'Login successful' });
   } catch (error) {
@@ -108,11 +100,7 @@ exports.getUserProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-<<<<<<< HEAD
-    res.status(200).json(shop);
-=======
     res.status(200).json(user);
->>>>>>> 56e7f94a71e014bfeef9900f95ee05e017ff0687
   } catch (error) {
     res.status(500).json({ error: 'Error fetching user profile' });
   }
