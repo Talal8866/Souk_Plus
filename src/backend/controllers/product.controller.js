@@ -1,63 +1,51 @@
 const Product = require('../models/product.model');
-const Shop = require('../models/shop.model');
 const User = require('../models/user.model');
 
-// Add New Product
-exports.addProduct = async (req, res) => {
-  const { name, price, description, linkedShopId, pictures, quantity, category } = req.body;
+const Product = require('../models/product.model');
 
-  try {
-    const linkedShop = await Shop.findById(linkedShopId);
-    if (!linkedShop) {
-      return res.status(404).json({ error: 'Linked shop not found' });
-    }
+exports.addOrUpdateProduct = async (req, res) => {
+  const { id, name, price, description, category, availability } = req.body;
+  const linkedShop = req.user.id;
+  const picture = req.file ? req.file.path : null;
 
-    const product = new Product({
-      name,
-      price,
-      description,
-      linkedShop: linkedShopId,
-      pictures,
-      quantity,
-      category,
-    });
-
-    await product.save();
-    res.status(201).json({ message: 'Product added successfully', product });
-  } catch (error) {
-    res.status(500).json({ error: 'Error adding product' });
+  if (!name || !price || !description || !category) {
+    return res.status(400).json({ error: 'Please provide all required fields: name, price, description, category.' });
   }
-};
-
-// Update Product
-exports.updateProduct = async (req, res) => {
-  const { productId } = req.params;
-  const updates = req.body;
 
   try {
-    const existingProduct = await Product.findById(productId);
-    if (!existingProduct) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
+    if (id) {
+      const existingProduct = await Product.findById(id);
+      if (existingProduct) {
+        existingProduct.name = name || existingProduct.name;
+        existingProduct.price = price !== undefined ? price : existingProduct.price;
+        existingProduct.description = description || existingProduct.description;
+        existingProduct.linkedShop = linkedShop;
+        existingProduct.picture = picture || existingProduct.picture;
+        existingProduct.category = category || existingProduct.category;
+        existingProduct.availability = availability !== undefined ? availability : existingProduct.availability;
 
-    for (const key in updates) {
-      if (existingProduct[key] !== undefined) {
-        existingProduct[key] = updates[key];
+        await existingProduct.save();
+        return res.status(200).json({ message: 'Product updated successfully', product: existingProduct });
+      } else {
+        return res.status(404).json({ error: 'Product not found' });
       }
+    } else {
+      const newProduct = new Product({
+        name,
+        price,
+        description,
+        linkedShop,
+        picture,
+        category,
+        availability,
+      });
+
+      await newProduct.save();
+      return res.status(201).json({ message: 'Product added successfully', product: newProduct });
     }
-
-    await existingProduct.validate();
-
-    existingProduct.availability = existingProduct.quantity > 0;
-
-    await existingProduct.save();
-
-    res.status(200).json({ message: 'Product updated successfully', updatedProduct: existingProduct });
   } catch (error) {
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: error.message });
-    }
-    res.status(500).json({ error: 'Error updating product' });
+    console.error('Error adding/updating product:', error);
+    res.status(500).json({ error: 'Error adding/updating product' });
   }
 };
 
@@ -79,7 +67,7 @@ exports.deleteProduct = async (req, res) => {
 // Get Product Details
 exports.getProductDetails = async (req, res) => {
   const { productId } = req.params;
-  const userId = req.user ? req.user.id : null;
+  const userId = req.user.type == 'user' ? req.user.id : null;
 
   try {
     const product = await Product.findById(productId).populate('linkedShop');
@@ -99,7 +87,7 @@ exports.getProductDetails = async (req, res) => {
       price: product.price,
       description: product.description,
       linkedShop: product.linkedShop,
-      pictures: product.pictures,
+      picture: product.picture,
       category: product.category,
       availability: product.availability,
       isWishlisted,
@@ -125,5 +113,43 @@ exports.getProductsByShop = async (req, res) => {
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Get Products By Category
+exports.getProductsByCategory = async (req, res) => {
+  const { category } = req.params;
+
+  try {
+    const products = await Product.find({ category });
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: 'No products found for this category' });
+    }
+
+    return res.status(200).json({ products });
+  } catch (error) {
+    console.error('Error fetching products by category:', error);
+    return res.status(500).json({ error: 'Error fetching products' });
+  }
+};
+
+// Featured Products
+exports.getFeaturedProducts = async (req, res) => {
+  try {
+    const count = await Product.countDocuments({ availability: true });
+    if (count === 0) {
+      return res.status(404).json({ message: 'No featured products found' });
+    }
+
+    const randomProducts = await Product.aggregate([
+      { $match: { availability: true } },
+      { $sample: { size: 10 } }
+    ]);
+
+    return res.status(200).json({ products: randomProducts });
+  } catch (error) {
+    console.error('Error fetching featured products:', error);
+    return res.status(500).json({ error: 'Error fetching featured products' });
   }
 };

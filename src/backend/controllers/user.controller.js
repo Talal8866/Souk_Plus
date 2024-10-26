@@ -69,7 +69,7 @@ exports.loginUser = async (req, res) => {
 // Logout
 exports.logoutUser = async (req, res) => {
 try {
-    await User.findByIdAndUpdate(req.id, { $inc: { tokenVersion: 1 } });
+    await User.findByIdAndUpdate(req.user.id, { $inc: { tokenVersion: 1 } });
     res.status(200).json({ message: 'Logged user out successfully!' });
   } catch (error) {
     res.status(500).json({ message: 'Logout failed' });
@@ -87,7 +87,6 @@ exports.getPublicProfile = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-
     const userProfile = {
       name: user.name,
       email: user.email,
@@ -103,7 +102,7 @@ exports.getPublicProfile = async (req, res) => {
 
 // Get Current User Profile
 exports.getUserProfile = async (req, res) => {
-  const userId = req.id;
+  const userId = req.user.id;
 
   try {
     const user = await User.findById(userId);

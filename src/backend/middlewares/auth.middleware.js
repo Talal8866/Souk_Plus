@@ -9,26 +9,20 @@ const authenticateToken = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const { type, userId, shopId, version } = decoded;
+    const { type, id, version } = decoded;
 
-    let userOrShop;
-
-    if (type === 'user') {
-      userOrShop = await User.findById(userId);
-    } else if (type === 'shop') {
-      userOrShop = await Shop.findById(shopId);
-    }
+    const userOrShop =
+      type === 'user' ? await User.findById(id) : await Shop.findById(id);
 
     if (!userOrShop || userOrShop.tokenVersion !== version) {
-      return res.status(401).json({ message: 'Invalid token.' });
+      return res.status(401).json({ message: 'Invalid token or token version mismatch.' });
     }
 
-    req.type = type;
+    req.user = { id: userOrShop._id, type };
 
     next();
-
   } catch (error) {
-    res.status(403).json({ message: 'Invalid or expired token.' });
+    return res.status(403).json({ message: 'Invalid or expired token.' });
   }
 };
 

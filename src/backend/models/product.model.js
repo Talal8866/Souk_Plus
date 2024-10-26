@@ -15,18 +15,13 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   linkedShop: {
-    type: mongoose.Schema.Types.ObjectId, // Reference to the Shop model
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Shop',
     required: true,
   },
-  pictures: {
-    type: [String], // Array to store URLs or file paths for product images
+  picture: {
+    type: String,
     required: true,
-  },
-  quantity: {
-    type: Number,
-    required: true,
-    min: 0,
   },
   category: {
     type: String,
@@ -34,13 +29,8 @@ const productSchema = new mongoose.Schema({
   },
   availability: {
     type: Boolean,
-    default: true, //Updated based on quantity
+    default: true,
   },
-});
-
-productSchema.pre('save', function(next) {
-  this.availability = this.quantity > 0;
-  next();
 });
 
 const Product = mongoose.model('Product', productSchema);

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const shopController = require('../controllers/shop.controller');
-const authenticateToken = require('../middleware/auth.middleware');
-const userTypeValidator = require('../middleware/userTypeValidator.middleware');
+const authenticateToken = require('../middlewares/auth.middleware');
+const userTypeValidator = require('../middlewares/userTypeValidator.middleware');
+const upload = require('../middlewares/upload.middleware');
 
 // Shops Registration
-router.post('/register', shopController.registerShop);
+router.post('/register', upload.single('logo'), shopController.registerShop);
 
 // Shops Login
 router.post('/login', shopController.loginShop);
@@ -24,5 +25,20 @@ router.get('/:shopId', shopController.getPublicProfile);
 
 // Get Current Shop Profile
 router.get('/profile', authenticateToken, userTypeValidator('shop'), shopController.getShopProfile);
+
+// Update Shop Info
+router.patch('/profile/update', authenticateToken, shopController.updateProfile);
+
+// Change Shop Password
+router.post('/profile/change-password', authenticateToken, shopController.changePassword);
+
+// Upload Shop Logo
+router.post('/profile/logo', authenticateToken, upload.single('logo'), shopController.uploadLogo);
+
+// Update Shop Description
+router.patch('/profile/description', authenticateToken, shopController.updateDescription);
+
+//Get Featured Shops
+router.get('/featured', shopController.getFeaturedShops);
 
 module.exports = router;

@@ -27,7 +27,6 @@ const shopSchema = new mongoose.Schema({
   },
   shopCategory: {
     type: String,
-    enum: ['OPTION1', 'OPTION2', 'OPTION3'],
     required: true,
   },
   description: {
