@@ -1,8 +1,6 @@
 const Product = require('../models/product.model');
 const User = require('../models/user.model');
 
-const Product = require('../models/product.model');
-
 exports.addOrUpdateProduct = async (req, res) => {
   const { id, name, price, description, category, availability } = req.body;
   const linkedShop = req.user.id;
