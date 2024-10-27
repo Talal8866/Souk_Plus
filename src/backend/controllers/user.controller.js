@@ -35,7 +35,7 @@ exports.registerUser = async (req, res) => {
 
     await user.save();
 
-    const token = jwt.sign({ id: user._id, type: 'user'}, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign({ id: user._id, type: 'user', version: user.tokenVersion }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(201).json({ token, message: 'User registered and logged in successfully' });
   } catch (error) {
@@ -58,11 +58,21 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: user._id, type: 'user'}, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign({ id: user._id, type: 'user', version: user.tokenVersion }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(200).json({ token, message: 'Login successful' });
   } catch (error) {
     res.status(500).json({ error: 'Error logging in' });
+  }
+};
+
+// Logout
+exports.logoutUser = async (req, res) => {
+try {
+    await User.findByIdAndUpdate(req.user.id, { $inc: { tokenVersion: 1 } });
+    res.status(200).json({ message: 'Logged user out successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: 'Logout failed' });
   }
 };
 
@@ -76,7 +86,6 @@ exports.getPublicProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-
 
     const userProfile = {
       name: user.name,
@@ -93,14 +102,14 @@ exports.getPublicProfile = async (req, res) => {
 
 // Get Current User Profile
 exports.getUserProfile = async (req, res) => {
-  const userId = req.id;
+  const userId = req.user.id;
 
   try {
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    res.status(200).json(shop);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching user profile' });
   }

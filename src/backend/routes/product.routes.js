@@ -1,21 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/product.controller');
-const authenticateToken = require('../middleware/auth.middleware');
+const authenticateToken = require('../middlewares/auth.middleware');
+const tokenInfo = require('../middlewares/extractTokenInfo.middleware');
+const upload = require('../middlewares/upload.middleware');
 
-// Add Product To Current Shop
-router.post('/', authenticateToken, productController.addProduct);
+// Add or Update Product
+router.post('/', authenticateToken, upload.single('picture'), productController.addOrUpdateProduct);
+
+// Delete Current Product
+router.delete('/:productId', authenticateToken, productController.deleteProduct);
+
+// Get Current Product Details
+router.get('/:productId', tokenInfo, productController.getProductDetails)
 
 // Get All Products of a Shop
 router.get('/:shopName', productController.getProductsByShop);
 
-// Get Current Product Details
-router.get('/:productId', authenticateToken, productController.getProductDetails);
+// Get Products By Category
+router.get('/products/:category', productController.getProductsByCategory);
 
-// Update Current Product
-router.put('/:productId', authenticateToken, productController.updateProduct);
-
-// Delete Current Product
-router.delete('/:productId', authenticateToken, productController.deleteProduct);
+// Get Featured Products
+router.get('/products/featured', productController.getFeaturedProducts);
 
 module.exports = router;

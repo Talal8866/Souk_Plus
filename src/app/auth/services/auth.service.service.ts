@@ -10,7 +10,7 @@ export class AuthServiceService {
   private token: string = '';
   private currentUser: any = null;
   user = new Subject();
-  
+
   createuser_service(model: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/users/register', model); //done
   }

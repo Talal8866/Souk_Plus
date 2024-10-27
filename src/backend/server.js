@@ -1,7 +1,7 @@
 require('dotenv').config({ path: "./src/backend/config/.env" });
-const cors = require('cors');
 const express = require('express');
 const connectDB = require('./config/db');
+const cors = require('cors');
 
 const userRoutes = require('./routes/user.routes');
 const shopRoutes = require('./routes/shop.routes');
@@ -12,11 +12,9 @@ const cartRoutes = require('./routes/cart.routes');
 
 const app = express();
 const PORT = process.env.PORT;
-
-// CORS Options
 const corsOptions = {
-  origin: 'http://localhost:4200',
-  credentials: true,
+    origin: 'http://localhost:4200',
+    credentials: true
 };
 
 app.use(cors(corsOptions));
