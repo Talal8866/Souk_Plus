@@ -11,10 +11,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-<<<<<<< HEAD
-=======
     match: /.+\@.+\..+/,
->>>>>>> 56e7f94a71e014bfeef9900f95ee05e017ff0687
     trim: true,
     lowercase: true,
   },

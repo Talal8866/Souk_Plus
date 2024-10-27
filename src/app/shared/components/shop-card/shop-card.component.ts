@@ -7,10 +7,8 @@ import { ProductserviceService } from 'src/app/products/services/productservice.
   styleUrls: ['./shop-card.component.css']
 })
 export class ShopCardComponent {
-
   constructor(private servive: ProductserviceService) { }
 
   @Input() shops: any[] = [];
   @Input() categories: any[] = [];
-
 }

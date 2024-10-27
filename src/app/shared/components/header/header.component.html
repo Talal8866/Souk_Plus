@@ -1,22 +1,24 @@
 <header class="container">
     <nav class="header-nav">
-        <span class="logo">
-            <a routerLink="/">Clicon</a>
-        </span>
-        <input type="search" placeholder="Search for anything...">
-        <ul class="icons">
-            <li *ngIf="currentUser" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>your cart</li>
-            <li *ngIf="!currentUser" routerLink="/login"><mat-icon>login</mat-icon>login</li>
-            <li *ngIf="currentUser"><mat-icon>person</mat-icon></li>
-            <li *ngIf="currentUser" routerLink="/client-details">{{currentUser?.fullname}}</li>
-        </ul>
+      <span class="logo">
+        <a routerLink="/">Clicon</a>
+      </span>
+      <input type="search" placeholder="Search for anything...">
+      <ul class="icons">
+        <li *ngIf="isClient" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>your cart</li>
+        <li *ngIf="!currentUser" routerLink="/login"><mat-icon>login</mat-icon>login</li>
+        <li *ngIf="currentUser"><mat-icon>person</mat-icon></li>
+        <li *ngIf="isShopOwner" routerLink="/edit-profile">{{currentUser?.name}}</li>
+        <li *ngIf="isClient" routerLink="/client-details">{{currentUser?.name}}</li>
+      </ul>
     </nav>
     <nav class="bellow-nav">
-        <ul>
-            <li routerLink="/">Home</li>
-            <li><a href="#shops">Shops</a></li>
-            <li><a href="#shop-now">Products</a></li>
-            <li routerLink="/about-us">About Us</li>
-        </ul>
+      <ul>
+        <li routerLink="/">Home</li>
+        <li><a href="#shops">Shops</a></li>
+        <li><a href="#shop-now">Products</a></li>
+        <li routerLink="/about-us">About Us</li>
+      </ul>
     </nav>
-</header>
+  </header>
+  

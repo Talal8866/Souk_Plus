@@ -8,11 +8,9 @@ import { ShopServiceService } from '../../services/shop-service.service';
   styleUrls: ['./all-shops.component.css']
 })
 export class AllShopsComponent {
-
   constructor(private servive: ProductserviceService, private service2: ShopServiceService) { }
 
   @Input() categories: any[] = [];
-
   shops: any[] = [];
 
   ngOnInit() {
@@ -51,5 +49,4 @@ export class AllShopsComponent {
       this.shops = res;
     })
   }
-
 }

@@ -6,31 +6,9 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthServiceService {
-<<<<<<< HEAD
   constructor(private http: HttpClient) {}
   private token: string = '';
   private currentUser: any = null;
-=======
-
-  constructor(private http: HttpClient) { }
-
-  createuser_service(model: any) {
-    return this.http.post('http://localhost:3000/api/users/register', model)  // done
-  }
-
-  createshop_service(model: any) {
-    return this.http.post('http://localhost:3000/api/shop/register', model) // done
-  }
-
-  loginuser_service(model: any) {
-    return this.http.post('http://localhost:3000/api/user/login', model) // done
-  }
-
-  loginshop_service(model: any) {
-    return this.http.post('http://localhost:3000/api/shop/login', model) // done
-  }
-
->>>>>>> 4c02cb183a8ce7fda41d4d2fa8a48bedbfef61ee
   user = new Subject();
   
   createuser_service(model: any): Observable<any> {

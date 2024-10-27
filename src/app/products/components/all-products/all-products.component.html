@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="categories">
-    <label>ategories</label>
+    <label>Categories</label>
     <select (change)="filtercategory($event)">
         <option value="all" selected>All</option>
         <option value="{{option}}" *ngFor="let option of categories">{{option}}</option>
