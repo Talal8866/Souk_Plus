@@ -2,8 +2,9 @@
 <div class="container">
     <form [formGroup]="signupForm">
         <div class="spans">
-            <span routerLink="/signup">Private</span>
-            <span routerLink="/shop-signup">Business</span>
+            <span routerLink="/signup" routerLinkActive="active1"
+                [routerLinkActiveOptions]="{ exact: true }">Private</span>
+            <span routerLink="/shop-signup" routerLinkActive="active2">Business</span>
         </div>
         <div class="inputs">
             <label for="fullname">FullName</label>
@@ -51,8 +52,8 @@
                     Passwords do not </small>
             </div>
             <button [disabled]="signupForm.invalid || (signupForm.value.pass ==! signupForm.value.confirmpass)"
-                (click)="Submit1()">Create Private Account<mat-icon>arrow_forward</mat-icon></button>
-
+                [ngStyle]="getButtonStyles()" (click)="Submit1()">Create Private
+                Account<mat-icon>arrow_forward</mat-icon></button>
             <div class="create">
                 <span> or <br></span>
                 <button>Already have account?<a routerLink="/login">login</a> </button>

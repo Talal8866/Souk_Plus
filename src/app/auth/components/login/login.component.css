@@ -12,7 +12,7 @@
     margin-top: 60px;
     margin-bottom: 60px;
     width: 424px;
-    height: 494px;
+    height: 524px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -43,24 +43,61 @@
 
 .container form .inputs .radios {
     display: flex;
+    align-items: center;
     justify-content: center;
     margin-left: -20px;
 }
 
-.container form .inputs .radios input {
-    display: flex;
-    column-gap: 10px;
-    width: 10px;
-    height: 10px;
+/* Hide the original radio button */
+.custom-radio {
+    display: none;
 }
 
-.container form .inputs .radios .input1{
+/* Style the label to look like a radio button */
+.custom-radio+label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+/* Style the circle */
+.custom-radio+label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--dark-gray);
+    border-radius: 50%;
+    background: var(--custom-white);
+}
+
+/* Style the checked state */
+.custom-radio:checked+label:before {
+    border-color: var(--dark-gray);
+    background: var(--custom-white);
+}
+
+/* Style the inner dot */
+.custom-radio:checked+label:after {
+    content: "";
+    position: absolute;
+    left: 4.5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dark-gray);
+}
+
+.container form .inputs .radios .input1 {
     position: relative;
     top: 5px;
     right: 25px;
 }
 
-.container form .inputs .radios .input2{
+.container form .inputs .radios .input2 {
     position: relative;
     top: 5px;
     left: 20px;
@@ -71,12 +108,12 @@
     color: var(--dark-maincolor);
 }
 
-.container form .inputs .radios .label1{
+.container form .inputs .radios .label1 {
     position: relative;
     right: 20px;
 }
 
-.container form .inputs .radios .label2{
+.container form .inputs .radios .label2 {
     position: relative;
     left: 25px;
 }
@@ -162,4 +199,11 @@ label {
 small {
     color: firebrick;
     margin-left: -30px;
+    margin-top: -10px;
 }
+
+/* 
+.container form .inputs .radios{
+    width: 20px;
+    height: 20px;
+} */

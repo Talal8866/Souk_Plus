@@ -14,7 +14,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.service.getCurrentUser();
-    this.isShopOwner = this.currentUser && this.currentUser.email == this.currentUser.shop.email;
-    this.isClient = this.currentUser && this.currentUser.email == this.currentUser.user.email;
+    if (this.currentUser) {
+      this.isShopOwner = !!this.currentUser.shop;
+      this.isClient = !!this.currentUser.user;
+    }
   }
 }

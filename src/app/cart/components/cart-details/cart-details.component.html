@@ -5,7 +5,7 @@
             <ul>
                 <li routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>Shopping Cart</li>
                 <li routerLink="/wishlist"><mat-icon>favorite</mat-icon>wishlist</li>
-                <li><mat-icon>settings</mat-icon><a href="#settings">setting</a></li>
+                <li routerLink="/client-details"><mat-icon>settings</mat-icon>setting</li>
                 <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
             </ul>
         </nav>
@@ -40,7 +40,6 @@
             <hr>
             <div class="actions">
                 <button routerLink="" class="back"><mat-icon>arrow_back</mat-icon> return to shop</button>
-                <button class="update">update cart</button>
             </div>
         </div>
         <div class="totals">

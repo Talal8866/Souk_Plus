@@ -18,6 +18,7 @@
 .container form .spans {
     display: flex;
     justify-content: space-around;
+    border-bottom: var(--gray) 1px solid;
     align-items: center;
     font-weight: 600;
     width: 422px;
@@ -25,15 +26,16 @@
     margin-bottom: 20px;
 }
 
-.container form .spans:first-child {
-    border-bottom: var(--pink) 3.5px solid;
-}
-
 .container form .spans span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--custom-black);
     font-size: 20px;
     line-height: 28px;
     cursor: pointer;
+    width: 212px;
+    height: 60px;
 }
 
 .container form .inputs {
@@ -77,27 +79,27 @@ label {
     font-weight: 500;
 }
 
-input::content{
+input::content {
     padding-left: 10px;
 }
 
-.small{
+.small {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-small{
+small {
     color: firebrick;
     margin-left: -30px;
+    margin-top: -10px;
 }
 
-.container .shop .inputs select{
+.container .shop .inputs select {
     border: 1px solid var(--gray);
     width: 360px;
     height: 44px;
 }
-
 
 .container form .inputs .create {
     display: flex;
@@ -136,4 +138,8 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.spans span.active1 {
+    border-bottom: 2.5px solid var(--pink);
 }

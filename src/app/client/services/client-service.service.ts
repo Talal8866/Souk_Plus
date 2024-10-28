@@ -18,12 +18,11 @@ export class ClientServiceService {
 
   getUserbyID(name: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.get(`http://localhost:3000/api/users/profile?name=${name}`, { headers }); //done
+    return this.http.get(`http://localhost:3000/api/users/profile${name}`, { headers }); //done
   }
 
   // getting Token for user(id)
   getToken() {
     return localStorage.getItem('token');
   }
-
 }

@@ -8,7 +8,7 @@ import { ShopServiceService } from '../../services/shop-service.service';
   styleUrls: ['./all-shops.component.css']
 })
 export class AllShopsComponent {
-  constructor(private servive: ProductserviceService, private service2: ShopServiceService) { }
+  constructor(private product_servive: ProductserviceService, private shop_service: ShopServiceService) { }
 
   @Input() categories: any[] = [];
   shops: any[] = [];
@@ -29,23 +29,27 @@ export class AllShopsComponent {
   }
 
   getShops_Here() {
-    this.servive.getShops().subscribe((res: any) => {
+    this.product_servive.getShops().subscribe((res: any) => {
       this.shops = res;
-    }, error => {
-      alert("error")
-    })
+    },
+    //  error => {
+    //   alert("error")
+    // }
+   )
   }
 
   getCategories_Here() {
-    this.servive.getAllCategories().subscribe((res: any) => {
+    this.product_servive.getAllCategories().subscribe((res: any) => {
       this.shops = res;
-    }, error => {
-      alert("error")
-    })
+    },
+    //  error => {
+    //   alert("error")
+    // }
+   )
   }
 
   getShops_byCategories_Here(keyWord: string) {
-    this.servive.getShops_byCategories(keyWord).subscribe((res: any) => {
+    this.product_servive.getShops_byCategories(keyWord).subscribe((res: any) => {
       this.shops = res;
     })
   }

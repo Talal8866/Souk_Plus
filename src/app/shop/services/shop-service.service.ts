@@ -5,19 +5,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ShopServiceService {
-
   constructor(private http: HttpClient) { }
 
   changeShopData(model: any) {
-    return this.http.post('http://localhost:3000/api/shops', model)
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    return this.http.patch(`http://localhost:3000/api/shops/profile/update${model}`, { headers }); // except description and logo
   }
 
   changeShoppassword(model: any) {
-    return this.http.post('http://localhost:3000/api/shops', model)
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    return this.http.post(`http://localhost:3000/api/shops/profile/change-password${model}`, { headers }); // done
   }
 
   getShopProducts(name: String) {
-    return this.http.get('http://localhost:3000/api/products/:shopname' + name) // done
+    return this.http.get('http://localhost:3000/api/products/:shopName' + name) // done
   }
 
   deleteProduct(id: any) {
@@ -29,7 +30,7 @@ export class ShopServiceService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
     return this.http.put(`http://localhost:3000/api/products/:product${id}`, { headers }, model);
   }
-  
+
   addProduct(model: any) {
     return this.http.post('http://localhost:3000/api/products', model) // done
   }
@@ -37,5 +38,4 @@ export class ShopServiceService {
   getToken() {
     return localStorage.getItem('token');
   }
-
 }

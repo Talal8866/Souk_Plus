@@ -213,7 +213,7 @@ input {
     height: 56px;
 }
 
-input::placeholder{
+input::content{
     padding-left: 20px;
 }
 

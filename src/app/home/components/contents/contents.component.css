@@ -82,12 +82,12 @@
 
 .landing .left button a {
     text-decoration: none;
-    color: white;
+    color: var(--custom-white);
 }
 
 .categories {
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 
 .categories .title1 {
@@ -95,7 +95,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     height: 73px;
 }
 
@@ -162,31 +162,11 @@
     height: 236px;
 }
 
-.categories .cards figure .span1 {
-   
-}
-
-.categories .cards figure .span2 {
-    position: relative;
-    bottom: 10px;
-   
-}
-
-.categories .cards figure .span3 {
-    position: relative;
-   
-}
-
-.categories .cards figure .span4 {
-    position: relative;
-}
-
-.categories .cards figure .span5 {
-   
-}
-
+.categories .cards figure .span1,
+.categories .cards figure .span3,
+.categories .cards figure .span4,
 .categories .cards figure .span6 {
-   
+    margin-bottom: -12.5px;
 }
 
 .categories .cards figure figcaption {
@@ -201,7 +181,6 @@
 
 .products {
     height: 650px;
-    margin-top: 30px;
 }
 
 .products .title {
@@ -210,6 +189,7 @@
     align-items: center;
     background-color: var(--gray);
     height: 73px;
+    margin-bottom: 30px;
 }
 
 .products .title .pro {
@@ -229,5 +209,4 @@
     line-height: 34px;
     margin-right: 50px;
     font-weight: 700;
-
 }

@@ -29,26 +29,25 @@ export class ClientDetailsComponent {
       number: [null, [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]]
     })
   }
-  logout() {
-    const model = {};
 
-    if (this.type === 'User') {
-      this.service_auth.loginuser_service(model).subscribe(
+  logout() {
+    if (this.type === 'user') {
+      this.service_auth.logoutuser_service().subscribe(
         (res: any) => {
-          alert("you have logged out");
-          this.service_auth.user.next(res);
-          console.log("res");
+          alert("You have logged out");
+          this.service_auth.setCurrentUser(null); // Clear current user
+          console.log(res);
         },
         (error: any) => {
           console.error('Error during user logout:', error);
         }
       );
     } else {
-      this.service_auth.loginshop_service(model).subscribe(
+      this.service_auth.logoutshop_service().subscribe(
         (res: any) => {
-          alert("you have logged out");
-          this.service_auth.user.next(res);
-          console.log("res");
+          alert("You have logged out");
+          this.service_auth.setCurrentUser(null); // Clear current user
+          console.log(res);
         },
         (error: any) => {
           console.error('Error during shop logout:', error);

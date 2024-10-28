@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   private token: string = '';
   private currentUser: any = null;
   user = new Subject();
@@ -23,8 +23,18 @@ export class AuthServiceService {
     return this.http.post('http://localhost:3000/api/users/login', model); //done
   }
 
+  logoutuser_service(): Observable<any> {
+    const headers = { 'Authorization': `Bearer ${this.getToken()}` };
+    return this.http.post('http://localhost:3000/api/users/logout', {}, { headers });
+  }
+
   loginshop_service(model: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/shops/login', model); //done
+  }
+
+  logoutshop_service(): Observable<any> {
+    const headers = { 'Authorization': `Bearer ${this.getToken()}` };
+    return this.http.post('http://localhost:3000/api/shops/logout', {}, { headers });
   }
 
   // handing Token
@@ -39,9 +49,14 @@ export class AuthServiceService {
 
   setCurrentUser(user: any): void {
     this.currentUser = user;
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
   getCurrentUser(): any {
+    if (!this.currentUser) {
+      const storedUser = localStorage.getItem('currentUser');
+      this.currentUser = storedUser ? JSON.parse(storedUser) : null;
+    }
     return this.currentUser;
   }
 }

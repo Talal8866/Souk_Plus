@@ -17,12 +17,12 @@ export class ProductserviceService {
   }
 
   getProducts_byCategories(keyWord: string) {
-    return this.http.get('http://localhost:3000/api/' + keyWord);
+    return this.http.get('http://localhost:3000/api/products/:category' + keyWord); // done
   }
 
   getProductByID(id: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
-    return this.http.get(`http://localhost:3000/api/products/${id}`, { headers });
+    return this.http.get(`http://localhost:3000/api/:products/${id}`, { headers });
   }
 
   // shops services:
@@ -36,7 +36,7 @@ export class ProductserviceService {
 
   getShopByID(name: String) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.get(`http://localhost:3000/api/shops/profile?name=${name}`, { headers }); //done
+    return this.http.get(`http://localhost:3000/api/shops/profile${name}`, { headers }); //done
   }
 
   // getting Token for products(id) and shops(id)

@@ -39,20 +39,23 @@ export class EditProfileComponent {
   }
 
   logout() {
-    const model = {};
-    if (this.type === 'User') {
-      this.service_auth.loginuser_service(model).subscribe(
+    if (this.type === 'user') {
+      this.service_auth.logoutuser_service().subscribe(
         (res: any) => {
-          this.service_auth.user.next(res);
+          alert("You have logged out");
+          this.service_auth.setCurrentUser(null); // Clear current user
+          console.log(res);
         },
         (error: any) => {
           console.error('Error during user logout:', error);
         }
       );
     } else {
-      this.service_auth.loginshop_service(model).subscribe(
+      this.service_auth.logoutshop_service().subscribe(
         (res: any) => {
-          this.service_auth.user.next(res);
+          alert("You have logged out");
+          this.service_auth.setCurrentUser(null); // Clear current user
+          console.log(res);
         },
         (error: any) => {
           console.error('Error during shop logout:', error);

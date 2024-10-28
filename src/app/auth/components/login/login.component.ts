@@ -21,15 +21,14 @@ export class LoginComponent {
       pass: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       type: new FormControl(this.type)
     });
-    this.getRole(event);
   }
 
   getRole(event: any) {
-    this.type = event.value;
+    this.type = event.target.value
   }
 
   Submit() {
-    if (this.type === 'User') {
+    if (this.type === 'user') {
       const model = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.pass,
@@ -64,5 +63,11 @@ export class LoginComponent {
         }
       );
     }
+  }
+
+  getButtonStyles() {
+    return this.loginForm.invalid
+      ? { 'background-color': 'var(--mid-gray)', 'cursor': 'not-allowed', 'color': 'var(--custom-white)' } // Styles when disabled
+      : { 'background-color': 'var(--dark-maincolor)', 'cursor': 'pointer', 'color': 'var(--custom-white)' };
   }
 }

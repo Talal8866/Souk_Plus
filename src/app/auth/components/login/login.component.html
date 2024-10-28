@@ -6,9 +6,9 @@
         </div>
         <div class="inputs">
             <div class="radios" (change)="getRole($event)" formControlName="type">
-                <input name="option" type="radio" value="User" id="User" class="input1">
+                <input name="option" type="radio" value="user" id="User" class="input1 custom-radio ">
                 <label for="User" class="label1">Private</label>
-                <input name="option" type="radio" value="Shop" id="Shop" class="input2">
+                <input name="option" type="radio" value="Shop" id="Shop" class="input2 custom-radio ">
                 <label for="Shop" class="label2">Bussines</label>
             </div>
             <label for="email">Email Address</label>
@@ -23,7 +23,8 @@
                 <small *ngIf="loginForm.get('pass')?.errors?.['required'] && loginForm.get('pass')?.dirty">Password is
                     required</small>
             </div>
-            <button [disabled]="loginForm.invalid" (click)="Submit()">Log In<mat-icon>arrow_forward</mat-icon></button>
+            <button [disabled]="loginForm.invalid" (click)="Submit()" [ngStyle]="getButtonStyles()">Log
+                In<mat-icon>arrow_forward</mat-icon></button>
             <div class="create">
                 <span class="line-with-or">or</span>
                 <button>new to clicon? <a routerLink="/signup">sign up</a></button>
