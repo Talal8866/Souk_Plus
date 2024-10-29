@@ -31,7 +31,6 @@ const shopSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   socialMediaLinks: {
     type: [String],
@@ -49,11 +48,10 @@ const shopSchema = new mongoose.Schema({
   },
   owners: {
     type: String,
-    required: true,
   },
   tokenVersion: {
     type: Number,
-    default: 0
+    default: 0,
   },
 });
 

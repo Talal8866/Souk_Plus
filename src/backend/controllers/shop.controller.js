@@ -29,7 +29,7 @@ exports.registerShop = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const logo = req.file ? req.file.path : null;
+    const logo = req.file ? req.file.path : null; // Get logo path from the uploaded file
 
     const shop = new Shop({
       name,
@@ -39,17 +39,22 @@ exports.registerShop = async (req, res) => {
       phoneNumber,
       shopCategory,
       description,
-      socialMediaLinks,
+      socialMediaLinks: socialMediaLinks || [],
       logo,
       owners,
     });
 
     await shop.save();
 
-    const token = jwt.sign({ id: shop._id, type: 'shop', version: shop.tokenVersion }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign(
+      { id: shop._id, type: 'shop', version: shop.tokenVersion },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
 
     res.status(201).json({ token, message: 'Shop registered successfully' });
   } catch (error) {
+    console.error('Error registering shop:', error);
     res.status(500).json({ error: 'Error registering shop' });
   }
 };
