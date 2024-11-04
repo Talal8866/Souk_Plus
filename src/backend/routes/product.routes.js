@@ -18,9 +18,9 @@ router.get('/:productId', tokenInfo, productController.getProductDetails)
 router.get('/:shopName', productController.getProductsByShop);
 
 // Get Products By Category
-router.get('/products/:category', productController.getProductsByCategory);
+router.get('/list/:category', productController.getProductsByCategory);
 
 // Get Featured Products
-router.get('/products/featured', productController.getFeaturedProducts);
+router.get('/featured', productController.getFeaturedProducts);
 
 module.exports = router;

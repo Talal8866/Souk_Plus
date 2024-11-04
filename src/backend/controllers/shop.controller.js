@@ -46,11 +46,9 @@ exports.registerShop = async (req, res) => {
 
     await shop.save();
 
-    const token = jwt.sign(
-      { id: shop._id, type: 'shop', version: shop.tokenVersion },
-      process.env.JWT_SECRET,
-      { expiresIn: '1d' }
-    );
+    const tokenPayload = { id: shop._id, type: 'shop', version: shop.tokenVersion };
+
+    const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(201).json({ token, message: 'Shop registered successfully' });
   } catch (error) {
@@ -74,7 +72,9 @@ exports.loginShop = async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: shop._id, type: 'shop', version: shop.tokenVersion }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const tokenPayload = { id: shop._id, type: 'shop', version: shop.tokenVersion };
+
+    const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(200).json({ token, message: 'Login successful' });
   } catch (error) {

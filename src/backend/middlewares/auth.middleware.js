@@ -13,7 +13,8 @@ const authenticateToken = async (req, res, next) => {
 
     const userOrShop =
       type === 'user' ? await User.findById(id) : await Shop.findById(id);
-
+      console.log('id: ',id);
+      console.log('type: ', type);
     if (!userOrShop || userOrShop.tokenVersion !== version) {
       return res.status(401).json({ message: 'Invalid token or token version mismatch.' });
     }
