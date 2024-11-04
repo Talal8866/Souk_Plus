@@ -17,15 +17,16 @@
     column-gap: 10px;
 }
 
-.bottom figure img {
-    width: 40px;
-    height: 40px;
+.bottom figure mat-icon {
+    scale: 100%;
 }
 
 .bottom figure figcaption {
     color: var(--custom-black);
     font-size: 14px;
+    line-height: 20px;
 }
+
 
 .top {
     display: grid;
@@ -111,7 +112,6 @@
 .categories .cards {
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
 }
 
 .categories .cards figure {

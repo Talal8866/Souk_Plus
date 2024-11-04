@@ -36,7 +36,7 @@ export class AddProductComponent {
       category: this.addProductForm.value.category,
       quantity: this.addProductForm.value.quantity
     }
-    this.shop_service.addProduct(model).subscribe((res: any) => {
+    this.shop_service.addProduct(this.name, model).subscribe((res: any) => {
       res = alert("The Product Added Successfully")
     })
   }

@@ -9,7 +9,7 @@ export class ShopServiceService {
 
   changeShopData(model: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.patch(`http://localhost:3000/api/shops/profile/update${model}`, { headers }); // except description and logo
+    return this.http.patch(`http://localhost:3000/api/shops/profile/update/${model}`, { headers }); // except description and logo
   }
 
   changeShoppassword(model: any) {
@@ -23,16 +23,17 @@ export class ShopServiceService {
 
   deleteProduct(id: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
-    return this.http.delete(`http://localhost:3000/api/products/:product${id}`, { headers });
+    return this.http.delete(`http://localhost:3000/api/products/:product/${id}`, { headers });
   }
 
   updateProduct(id: any, model: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
-    return this.http.put(`http://localhost:3000/api/products/:product${id}`, { headers }, model);
+    return this.http.post(`http://localhost:3000/api/products/${id}`, { headers }, model);
   }
 
-  addProduct(model: any) {
-    return this.http.post('http://localhost:3000/api/products', model) // done
+  addProduct(id: any, model: any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
+    return this.http.post(`http://localhost:3000/api/products/${id}`, { headers }, model);
   }
 
   getToken() {

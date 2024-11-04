@@ -12,6 +12,7 @@ export class SignupComponent {
   constructor(private routes: Router, private service: AuthServiceService) { }
 
   signupForm!: FormGroup;
+  showPassword = false;
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -63,5 +64,9 @@ export class SignupComponent {
     return this.signupForm.invalid || (this.signupForm.value.pass !== this.signupForm.value.confirmpass)
       ? { 'background-color': 'var(--mid-gray)', 'cursor': 'not-allowed', 'color': 'var(--custom-white)' }
       : { 'background-color': 'var(--dark-maincolor)', 'cursor': 'pointer', 'color': 'var(--custom-white)' };
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

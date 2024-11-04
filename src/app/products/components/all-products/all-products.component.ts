@@ -37,23 +37,28 @@ export class AllProductsComponent {
 
   getProducts_Here() {
     this.Products_service.getProducts().subscribe((res: any) => {
+      console.log(res)
       this.products = res;
     }, error => {
-      alert("error")
+      alert("couldn't get all products")
     })
   }
 
   getShopProducts_Here() {
     this.shop_servive.getShopProducts(this.name).subscribe((res: any) => {
+      console.log(res)
       this.shopProducts = res;
+    }, error => {
+      alert("couldn't get shops products")
     })
   }
 
   getCategories_Here() {
     this.Products_service.getAllCategories().subscribe((res: any) => {
+      console.log(res)
       this.products = res;
     }, error => {
-      alert("error")
+      alert("couldn't get categories")
     })
   }
 
@@ -81,5 +86,4 @@ export class AllProductsComponent {
       localStorage.setItem("cart", JSON.stringify(this.cart_products));
     }
   }
-
 }

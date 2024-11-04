@@ -23,10 +23,10 @@
                     <li>sub-total</li>
                 </ul>
             </div>
-            <div class="products" *ngFor="let item for cart_products; let index = index">
+            <div class="products" *ngFor="let item of cart_products; let index = index">
                 <button class="cancel" (click)="deleteProduct(index)"><mat-icon>cancel</mat-icon></button>
                 <div class="img">
-                    <img src="{{item.item.img}}" alt="">
+                    <img src="{{item.item.pictures}}" alt="">
                 </div>
                 <span class="title">{{item.item.title}}</span>
                 <span>{{item.item.price}} $</span>

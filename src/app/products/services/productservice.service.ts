@@ -13,7 +13,7 @@ export class ProductserviceService {
 
   // products services:
   getProducts() {
-    return this.http.get('http://localhost:3000/api/products'); // done
+    return this.http.get('http://localhost:3000/api/products/products/featured'); // done
   }
 
   getProducts_byCategories(keyWord: string) {
@@ -36,7 +36,7 @@ export class ProductserviceService {
 
   getShopByID(name: String) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.get(`http://localhost:3000/api/shops/profile${name}`, { headers }); //done
+    return this.http.get(`http://localhost:3000/api/shops/profile/${name}`, { headers }); //done
   }
 
   // getting Token for products(id) and shops(id)
