@@ -116,7 +116,7 @@ exports.getProductsByShop = async (req, res) => {
 
 // Get Products By Category
 exports.getProductsByCategory = async (req, res) => {
-  const { category } = req.params;
+  const category = req.params.category.toLowerCase();
 
   try {
     const products = await Product.find({ category });

@@ -21,16 +21,24 @@ const productSchema = new mongoose.Schema({
   },
   picture: {
     type: String,
-    required: true,
   },
   category: {
     type: String,
     required: true,
+    lowercase: true,
+    trim: true,
   },
   availability: {
     type: Boolean,
     default: true,
   },
+});
+
+productSchema.pre('save', function(next) {
+  if (this.category) {
+    this.category = this.category.toLowerCase();
+  }
+  next();
 });
 
 const Product = mongoose.model('Product', productSchema);
