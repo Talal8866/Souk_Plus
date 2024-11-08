@@ -10,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AllProductsComponent {
 
-  constructor(private route: ActivatedRoute, private Products_service: ProductserviceService, private shop_servive: ShopServiceService) {
-    this.name = this.route.snapshot.paramMap.get("id")
-  }
+  constructor(private route: ActivatedRoute,
+  private Products_service: ProductserviceService,
+  private shop_servive: ShopServiceService) {this.name = this.route.snapshot.paramMap.get("id") }
   name: any = {}
   products: any[] = [];
   categories: any[] = [];
@@ -20,9 +20,9 @@ export class AllProductsComponent {
   shopProducts: any[] = [];
 
   ngOnInit() {
-    this.getProducts_Here()
-    this.getCategories_Here()
-    this.getShopProducts_Here()
+    this.getProducts_Here();
+    this.getCategories_Here();
+    this.getShopProducts_Here();
   }
 
   filtercategory(event: any) {
@@ -56,7 +56,7 @@ export class AllProductsComponent {
   getCategories_Here() {
     this.Products_service.getAllCategories().subscribe((res: any) => {
       console.log(res)
-      this.products = res;
+      this.categories = res;
     }, error => {
       alert("couldn't get categories")
     })

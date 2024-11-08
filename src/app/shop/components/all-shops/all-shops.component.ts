@@ -12,6 +12,7 @@ export class AllShopsComponent {
 
   @Input() categories: any[] = [];
   shops: any[] = [];
+  // categories: any[] = [];
 
   ngOnInit() {
     this.getShops_Here()
@@ -32,19 +33,19 @@ export class AllShopsComponent {
     this.product_servive.getShops().subscribe((res: any) => {
       this.shops = res;
     },
-    //  error => {
-    //   alert("error")
-    // }
+     error => {
+      alert("Couldn't get Shops")
+    }
    )
   }
 
   getCategories_Here() {
     this.product_servive.getAllCategories().subscribe((res: any) => {
-      this.shops = res;
+      this.categories  = res;
     },
-    //  error => {
-    //   alert("error")
-    // }
+     error => {
+      alert("Couldn't get Categories")
+    }
    )
   }
 

@@ -9,11 +9,15 @@ import { ClientServiceService } from '../../services/client-service.service';
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent {
-  constructor(private fb: FormBuilder, private service_auth: AuthServiceService, private service: ClientServiceService) { }
+  constructor(private fb: FormBuilder,
+  private service_auth: AuthServiceService,
+  private service: ClientServiceService) { }
 
   changepassForm!: FormGroup;
   editprofileForm!: FormGroup;
   @Input() type: string = "User"
+  userToken!: string;
+  name: any = {}
 
   ngOnInit(): void {
     this.changepassForm = this.fb.group({
@@ -28,6 +32,8 @@ export class ClientDetailsComponent {
       address: [null, Validators.required],
       number: [null, [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]]
     })
+
+    this.getUserbyID_Here();
   }
 
   logout() {
@@ -63,17 +69,33 @@ export class ClientDetailsComponent {
       address: this.editprofileForm.value.address,
       phoneNumber: this.editprofileForm.value.number
     }
-    this.service.changeUserData(model).subscribe(res => {
-      alert("success")
-    })
+    this.service.changeUserData(model).subscribe((res: any) => {
+      res = alert("success")
+    },
+    error => {
+     alert("Couldn't change user information")
+   })
   }
 
   Submit_pass() {
     const model = {
       password: this.changepassForm.value.newpass
     }
-    this.service.changeUserpassword(model).subscribe(res => {
-      alert("success")
-    })
+    this.service.changeUserpassword(model).subscribe((res: any) => {
+      res = alert("success")
+    },
+    error => {
+     alert("Couldn't Change User password")
+   })
+  }
+
+  getUserbyID_Here() {
+    this.service.getUserbyID(this.userToken).subscribe((res: any) => {
+      res = this.name
+      res = alert("Welcome To Your Profile")
+    },
+    error => {
+     alert("Couldn't get User profile")
+   })
   }
 }

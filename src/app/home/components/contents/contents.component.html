@@ -68,13 +68,13 @@
         <span class="pro">products</span>
         <a class="bro" routerLink="/all-products">browse all products<mat-icon>arrow_forward</mat-icon></a>
     </div>
-    <app-product *ngFor="let item of products | slice:5:10" [product]="item"></app-product>
+    <app-product *ngFor="let item of feturedProducts"></app-product>
 </div>
 <div class="products" id="shops">
     <div class="title">
         <span class="pro">Shops</span>
         <a class="bro" routerLink="/all-shops">browse all Shops<mat-icon>arrow_forward</mat-icon></a>
     </div>
-    <app-shop-card *ngFor="let item of shops"></app-shop-card>
+    <app-shop-card *ngFor="let item of feturedShops"></app-shop-card>
 </div>
 <app-footer></app-footer>

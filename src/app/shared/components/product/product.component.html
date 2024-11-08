@@ -1,6 +1,6 @@
 <div class="container" *ngFor="let item of products">
     <div class="img-container">
-        <img src="{{item.pictures}}" alt="" routerLink="/product-details/{{item.id}}">
+        <img src="{{item.pictures}}" alt="" routerLink="/product-details/{{item.req.id}}">
         <span><br>{{item.linkedShop}}</span>
     </div>
 
