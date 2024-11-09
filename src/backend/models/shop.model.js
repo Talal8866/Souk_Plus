@@ -28,6 +28,8 @@ const shopSchema = new mongoose.Schema({
   shopCategory: {
     type: String,
     required: true,
+    lowercase: true,
+    trim: true,
   },
   description: {
     type: String,

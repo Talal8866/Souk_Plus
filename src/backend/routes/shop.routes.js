@@ -41,4 +41,7 @@ router.get('/featured', shopController.getFeaturedShops);
 // Get Public Shop Profile
 router.get('/:shopId', shopController.getPublicProfile);
 
+// Get Shops By Category
+router.get('/categories/:category', shopController.getShopsByCategory);
+
 module.exports = router;

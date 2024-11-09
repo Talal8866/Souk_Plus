@@ -342,3 +342,21 @@ exports.getFeaturedShops = async (req, res) => {
     return res.status(500).json({ error: 'Error fetching featured shops' });
   }
 };
+
+// Get Shops By Category
+exports.getShopsByCategory = async (req, res) => {
+const category = req.params.category.toLowerCase();
+
+  try {
+    const shops = await Shop.find({ 'shopCategory': category });
+
+    if (shops.length === 0) {
+      return res.status(404).json({ message: 'No shops found in this category' });
+    }
+
+    return res.status(200).json({ shops });
+  } catch (error) {
+    console.error('Error fetching shops by category:', error);
+    return res.status(500).json({ error: 'Error fetching shops' });
+  }
+};
