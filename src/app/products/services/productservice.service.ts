@@ -8,40 +8,41 @@ export class ProductserviceService {
   constructor(private http: HttpClient) { }
 
   getAllCategories() {
-    return this.http.get('http://localhost:3000/api/categories'); // done
+    return this.http.get('http://localhost:3000/api/categories');
   }
 
-  // products services:
   getProducts() {
-    return this.http.get('http://localhost:3000/api/products'); // done
+    return this.http.get('http://localhost:3000/api/products');
   }
 
   getProducts_byCategories(keyWord: string) {
-    return this.http.get('http://localhost:3000/api/products/:category' + keyWord); // done
+    return this.http.get(`http://localhost:3000/api/products/list/:${keyWord}`);
   }
 
   getProductByID(id: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
-    return this.http.get(`http://localhost:3000/api/:products/${id}`, { headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); 
+    return this.http.get(`http://localhost:3000/api/products/:${id}`, { headers });
   }
 
-  // shops services:
   getShops() {
-    return this.http.get('http://localhost:3000/api/shops'); // done
+    return this.http.get('http://localhost:3000/api/shops');
   }
 
   getShops_byCategories(keyWord: string) {
-    return this.http.get('http://localhost:3000/api/shops' + keyWord);
+    return this.http.get(`http://localhost:3000/api/shops/category/${keyWord}`);
   }
 
-  getShopByID(name: String) {
+  getPublicShopProfile(keyWord: string) {
+    return this.http.get(`http://localhost:3000/api/shops/${keyWord}`);
+  }
+
+  getShopByID(name: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.get(`http://localhost:3000/api/shops/profile${name}`, { headers }); //done
+    return this.http.get(`http://localhost:3000/api/shops/profile/${name}`, { headers });
+    console.log(headers)
   }
 
-  // getting Token for products(id) and shops(id)
   getToken() {
     return localStorage.getItem('token');
   }
-
 }

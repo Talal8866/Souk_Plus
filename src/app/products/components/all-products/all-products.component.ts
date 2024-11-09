@@ -10,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AllProductsComponent {
 
-  constructor(private route: ActivatedRoute, private Products_service: ProductserviceService, private shop_servive: ShopServiceService) {
-    this.name = this.route.snapshot.paramMap.get("id")
-  }
+  constructor(private route: ActivatedRoute,
+  private Products_service: ProductserviceService,
+  private shop_servive: ShopServiceService) {this.name = this.route.snapshot.paramMap.get("id") }
   name: any = {}
   products: any[] = [];
   categories: any[] = [];
@@ -20,9 +20,9 @@ export class AllProductsComponent {
   shopProducts: any[] = [];
 
   ngOnInit() {
-    this.getProducts_Here()
-    this.getCategories_Here()
-    this.getShopProducts_Here()
+    this.getProducts_Here();
+    this.getCategories_Here();
+    this.getShopProducts_Here();
   }
 
   filtercategory(event: any) {
@@ -37,23 +37,28 @@ export class AllProductsComponent {
 
   getProducts_Here() {
     this.Products_service.getProducts().subscribe((res: any) => {
+      console.log(res)
       this.products = res;
     }, error => {
-      alert("error")
+      alert("couldn't get all products")
     })
   }
 
   getShopProducts_Here() {
     this.shop_servive.getShopProducts(this.name).subscribe((res: any) => {
+      console.log(res)
       this.shopProducts = res;
+    }, error => {
+      alert("couldn't get shops products")
     })
   }
 
   getCategories_Here() {
     this.Products_service.getAllCategories().subscribe((res: any) => {
-      this.products = res;
+      console.log(res)
+      this.categories = res;
     }, error => {
-      alert("error")
+      alert("couldn't get categories")
     })
   }
 
@@ -81,5 +86,4 @@ export class AllProductsComponent {
       localStorage.setItem("cart", JSON.stringify(this.cart_products));
     }
   }
-
 }

@@ -16,9 +16,9 @@
             </div>
             <hr>
             <div class="actions">
-                <button class="add-wish"><mat-icon>favorite</mat-icon>Add to Wishlist</button> <br>
-                <input type="number" class="down">
-                <button class="add-cart down">Add to cart <mat-icon>shopping_cart</mat-icon></button>
+                <button class="add-wish" (click)="addto_wishlist()"><mat-icon>favorite</mat-icon>Add to Wishlist</button> <br>
+                <input type="number" class="down" [(ngModel)]="amount">
+                <button class="add-cart down" (click)="addto_Cart()">Add to cart <mat-icon>shopping_cart</mat-icon></button>
             </div>
         </div>
     </section>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
 import { ShopServiceService } from '../../services/shop-service.service';
 import { ProductserviceService } from 'src/app/products/services/productservice.service';
@@ -15,11 +15,22 @@ export class EditProfileComponent {
 
   changepassForm!: FormGroup;
   editprofileForm!: FormGroup;
+  changelogoForm!: FormGroup;
+  changedescForm!: FormGroup;
   @Input() type: string = "User"
   @Input() shopProducts: any[] = [];
+  imageUrl: string | ArrayBuffer | null = null;
   name: any = {}
 
   ngOnInit(): void {
+    this.changelogoForm = new FormGroup({
+      newlogo: new FormControl(null, [Validators.required]),
+    });
+
+    this.changedescForm = new FormGroup({
+      newdesc: new FormControl(null, [Validators.required]),
+    });
+
     this.changepassForm = this.fb.group({
       currentPassword: [null, Validators.required],
       newpass: [null, [Validators.required, Validators.minLength(8)]],
@@ -103,4 +114,20 @@ export class EditProfileComponent {
       res = alert("The Product Deleted Successfully");
     });
   }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          this.imageUrl = e.target.result;
+          this.editprofileForm.patchValue({ image: e.target.result }); // Base64 string
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
 }

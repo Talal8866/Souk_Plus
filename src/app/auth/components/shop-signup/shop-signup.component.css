@@ -126,6 +126,9 @@ small {
 }
 
 .container form .inputs .create button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--maincolor);
     font-weight: 900;
 }
@@ -180,4 +183,15 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .spans span.active2 {
     border-bottom: 2.5px solid var(--pink);
+}
+
+.container form .inputs .show {
+    cursor: pointer;
+    color: var(--dark-gray);
+    background: none;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 40px;
+    top: 14px;
 }

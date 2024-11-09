@@ -8,7 +8,6 @@ import { ShopServiceService } from '../../services/shop-service.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-
   constructor(private Products_service: ProductserviceService, private shop_servive: ShopServiceService) { }
   @Input() shopProducts: any[] = [];
   name: any = {}
@@ -29,4 +28,5 @@ export class ProfileComponent {
       this.shopProducts = res;
     });
   }
+  
 }

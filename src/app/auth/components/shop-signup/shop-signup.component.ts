@@ -12,6 +12,7 @@ export class ShopSignupComponent {
 
   shopForm!: FormGroup;
   imageUrl: string | ArrayBuffer | null = null;
+  showPassword = false;
 
   ngOnInit(): void {
     this.shopForm = new FormGroup({
@@ -63,12 +64,14 @@ export class ShopSignupComponent {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imageUrl = e.target?.result ?? null;
-        this.shopForm.patchValue({ image: this.imageUrl });
+        if (e.target?.result) {
+          this.imageUrl = e.target.result;
+          this.shopForm.patchValue({ image: e.target.result }); // Base64 string
+        }
       };
       reader.readAsDataURL(file);
-    }
   }
+}
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('pass');
@@ -85,4 +88,9 @@ export class ShopSignupComponent {
       ? { 'background-color': 'var(--mid-gray)', 'cursor': 'not-allowed', 'color': 'var(--custom-white)' }
       : { 'background-color': 'var(--dark-maincolor)', 'cursor': 'pointer', 'color': 'var(--custom-white)' };
   }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
 }

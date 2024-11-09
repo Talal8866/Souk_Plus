@@ -11,9 +11,12 @@
     <div class="maincontainer">
         <div class="landing">
             <div class="container">
-                <div class="img">
-                    <img src="{{name.logo}}" alt="">
-                </div>
+                <div class="img" [formGroup]="changelogoForm">
+                    <img src="{{name.logo}}" alt="" >
+                    <label for="add-logo" class="add-img">+</label>
+                    <input type="file"  id="add-logo" formControlName="newlogo" (change)="onFileSelected($event)" hidden >
+                    <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" class="Selected-img" />
+                </div> 
                 <div class="details">
                     <h1>{{name.name}}</h1>
                     <p>{{name.description}}</p>
