@@ -16,6 +16,12 @@ router.post('/logout', authenticateToken, userController.logoutUser);
 // Get Current User Profile
 router.get('/profile', authenticateToken, userTypeValidator('user'), userController.getUserProfile);
 
+// Update Shop Info
+router.patch('/profile/update', authenticateToken, userController.updateProfile);
+
+// Change Shop Password
+router.post('/profile/change-password', authenticateToken, userController.changePassword);
+
 // Get Public User Profile
 router.get('/:userId', userController.getPublicProfile);
 

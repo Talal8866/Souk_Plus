@@ -242,10 +242,10 @@ exports.updateProfile = async (req, res) => {
 // Change Password
 exports.changePassword = async (req, res) => {
   const { currentPassword, newPassword, confirmPassword } = req.body;
-  const userId = req.user.id;
+  const shopId = req.user.id;
 
   try {
-    const shop = await Shop.findById(userId);
+    const shop = await Shop.findById(shopId);
     if (!shop) {
       return res.status(404).json({ error: 'Shop not found' });
     }

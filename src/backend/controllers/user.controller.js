@@ -118,3 +118,84 @@ exports.getUserProfile = async (req, res) => {
     res.status(500).json({ error: 'Error fetching user profile' });
   }
 };
+
+// Update user profile
+exports.updateProfile = async (req, res) => {
+  const userId = req.user.id;
+  const updates = req.body;
+
+  const allowedUpdates = [
+    'name',
+    'email',
+    'address',
+    'phoneNumber',
+  ];
+
+  const isValidOperation = Object.keys(updates).every((update) =>
+    allowedUpdates.includes(update)
+  );
+
+  if (!isValidOperation) {
+    return res.status(400).json({ error: 'Invalid updates!' });
+  }
+
+  const requiredFields = allowedUpdates;
+  const missingRequiredFields = requiredFields.filter((field) => !updates[field]);
+
+  if (missingRequiredFields.length > 0) {
+    return res.status(400).json({ error: `Missing required fields: ${missingRequiredFields.join(', ')}` });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    Object.keys(updates).forEach((key) => {
+      user[key] = updates[key];
+    });
+
+    await user.save();
+
+    res.status(200).json({ message: 'Profile updated successfully', user });
+  } catch (error) {
+    console.error('Error updating user profile:', error);
+    res.status(500).json({ error: 'Error updating profile' });
+  }
+};
+
+// Change Password
+exports.changePassword = async (req, res) => {
+  const { currentPassword, newPassword, confirmPassword } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Current password is incorrect' });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ error: 'New password and confirm password do not match' });
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).json({ error: 'New password must be at least 8 characters long' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+
+    await user.save();
+
+    res.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error changing password' });
+  }
+};
