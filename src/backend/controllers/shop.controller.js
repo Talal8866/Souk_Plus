@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Shop = require('../models/shop.model');
+const Product = require('../models/product.model');
 
 // Registration
 exports.registerShop = async (req, res) => {
@@ -131,10 +132,14 @@ exports.getPublicProfile = async (req, res) => {
   const { shopId } = req.params;
 
   try {
-    const shop = await Shop.findById(shopId).populate('products');
+    const shop = await Shop.findById(shopId);
+    console.log(shop);
+
     if (!shop) {
       return res.status(404).json({ error: 'Shop not found' });
     }
+
+    const shopProducts = await Product.find({'linkedShop': shop._id});
 
     const shopProfile = {
       name: shop.name,
@@ -144,7 +149,8 @@ exports.getPublicProfile = async (req, res) => {
       phoneNumber: shop.phoneNumber,
       email: shop.email,
       owners: shop.owners,
-      products: shop.products,
+      products: shopProducts,
+      logo: shop.logo,
     };
 
     res.status(200).json(shopProfile);
@@ -162,7 +168,25 @@ exports.getShopProfile = async (req, res) => {
     if (!shop) {
       return res.status(404).json({ error: 'Shop not found' });
     }
-    res.status(200).json(shop);
+
+    const shopProducts = await Product.find({'linkedShop': shop._id});
+
+    const shopProfile = {
+      id: shop._id,
+      name: shop.name,
+      email: shop.email,
+      address: shop.address,
+      phoneNumber: shop.phoneNumber,
+      category: shop.shopCategory,
+      description: shop.description,
+      socialMediaLinks: shop.socialMediaLinks,
+      logo: shop.logo,
+      rating: shop.averageRating,
+      owners: shop.owners,
+      products: shopProducts,
+    };
+
+    res.status(200).json(shopProfile);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching shop profile' });
   }

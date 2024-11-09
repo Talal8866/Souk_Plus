@@ -8,19 +8,19 @@ const upload = require('../middlewares/upload.middleware');
 // Add or Update Product
 router.post('/', authenticateToken, upload.single('picture'), productController.addOrUpdateProduct);
 
+// Get Featured Products
+router.get('/featured', productController.getFeaturedProducts);
+
+// Get All Products
+router.get('/all', productController.getAllProducts);
+
 // Delete Current Product
-router.delete('/:productId', authenticateToken, productController.deleteProduct);
+router.delete('/delete/:productId', authenticateToken, productController.deleteProduct);
 
 // Get Current Product Details
-router.get('/:productId', tokenInfo, productController.getProductDetails)
-
-// Get All Products of a Shop
-router.get('/:shopName', productController.getProductsByShop);
+router.get('/get/:productId', tokenInfo, productController.getProductDetails);
 
 // Get Products By Category
 router.get('/list/:category', productController.getProductsByCategory);
-
-// Get Featured Products
-router.get('/featured', productController.getFeaturedProducts);
 
 module.exports = router;

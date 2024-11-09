@@ -13,10 +13,11 @@ router.post('/login', userController.loginUser);
 // Users Logout
 router.post('/logout', authenticateToken, userController.logoutUser);
 
+// Get Current User Profile
+router.get('/profile', authenticateToken, userTypeValidator('user'), userController.getUserProfile);
+
 // Get Public User Profile
 router.get('/:userId', userController.getPublicProfile);
 
-// Get Current User Profile
-router.get('/profile', authenticateToken, userTypeValidator('user'), userController.getUserProfile);
 
 module.exports = router;

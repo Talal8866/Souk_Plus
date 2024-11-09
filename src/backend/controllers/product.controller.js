@@ -1,4 +1,5 @@
 const Product = require('../models/product.model');
+const Shop = require('../models/shop.model');
 const User = require('../models/user.model');
 
 exports.addOrUpdateProduct = async (req, res) => {
@@ -97,23 +98,6 @@ exports.getProductDetails = async (req, res) => {
   }
 };
 
-// Get Products of a shop
-exports.getProductsByShop = async (req, res) => {
-  const { shopName } = req.params;
-
-  try {
-    const products = await Product.find({ shopName }); // MongoDB query
-
-    if (products.length === 0) {
-      return res.status(404).json({ message: `No products found for shop: ${shopName}` });
-    }
-
-    res.status(200).json(products);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
 // Get Products By Category
 exports.getProductsByCategory = async (req, res) => {
   const category = req.params.category.toLowerCase();
@@ -149,5 +133,20 @@ exports.getFeaturedProducts = async (req, res) => {
   } catch (error) {
     console.error('Error fetching featured products:', error);
     return res.status(500).json({ error: 'Error fetching featured products' });
+  }
+};
+
+// All Products
+exports.getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.find();
+    if (products.length === 0) {
+      return res.status(404).json({ message: 'No products found' });
+    }
+
+    return res.status(200).json({ products: products });
+  } catch (error) {
+    console.error('Error fetching products list:', error);
+    return res.status(500).json({ error: 'Error fetching products list:' });
   }
 };

@@ -20,9 +20,6 @@ router.get('/', shopController.getAllShops);
 // Rate Shop
 router.post('/rate', authenticateToken, shopController.rateShop);
 
-// Get Public Shop Profile
-router.get('/:shopId', shopController.getPublicProfile);
-
 // Get Current Shop Profile
 router.get('/profile', authenticateToken, userTypeValidator('shop'), shopController.getShopProfile);
 
@@ -40,5 +37,8 @@ router.patch('/profile/description', authenticateToken, shopController.updateDes
 
 //Get Featured Shops
 router.get('/featured', shopController.getFeaturedShops);
+
+// Get Public Shop Profile
+router.get('/:shopId', shopController.getPublicProfile);
 
 module.exports = router;
