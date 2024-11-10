@@ -112,3 +112,23 @@ exports.removeFromCart = async (req, res) => {
     res.status(500).json({ error: 'Error removing product from cart.' });
   }
 };
+
+// Clear User's Cart (Checkout)
+exports.clearCart = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+
+    cart.products = [];
+    await cart.save();
+
+    res.status(200).json({ message: 'Cart cleared successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
