@@ -124,6 +124,22 @@ exports.clearCart = async (req, res) => {
       return res.status(404).json({ message: 'Cart not found' });
     }
 
+for (const item of cart.products) {
+      const product = await Product.findById(item.productId);
+
+      if (!product) {
+        return res.status(404).json({ message: `Product with ID ${item.productId} not found` });
+      }
+
+      // Assuming product has an `inStock` or `stock` field to indicate inventory level
+      if (!product.availability) {
+        return res.status(400).json({
+          message: `Product ${product.name} is out of stock`
+        });
+      }
+    }
+
+    // If all items are in stock, clear the cart
     cart.products = [];
     await cart.save();
 

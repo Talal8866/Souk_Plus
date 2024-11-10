@@ -66,5 +66,12 @@ shopSchema.methods.calculateAverageRating = function() {
   }
 };
 
+shopSchema.pre('save', function(next) {
+  if (this.shopCategory) {
+    this.shopCategory = this.shopCategory.toLowerCase();
+  }
+  next();
+});
+
 const Shop = mongoose.model('Shop', shopSchema);
 module.exports = Shop;
