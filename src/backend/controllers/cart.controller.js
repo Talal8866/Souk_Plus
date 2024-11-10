@@ -42,7 +42,11 @@ exports.viewCart = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    let cart = await Cart.findOne({ userId }).populate('products.productId');
+    let cart = await Cart.findOne({ userId }).populate({
+      path: 'products.productId',
+      populate: { path: 'linkedShop', select: 'name' } // Populate linkedShop with only the name field
+    });
+
     if (!cart) {
       cart = new Cart({ userId, products: [] });
       await cart.save();
@@ -59,6 +63,7 @@ exports.viewCart = async (req, res) => {
       category: item.productId.category,
       picture: item.productId.pictures && item.productId.pictures.length > 0 ? item.productId.pictures[0] : null,
       price: item.productId.price,
+      shopName: item.productId.linkedShop ? item.productId.linkedShop.name : null, // Access the shop name
     }));
 
     res.status(200).json({ products: populatedProducts, totalPrice });
@@ -131,7 +136,6 @@ for (const item of cart.products) {
         return res.status(404).json({ message: `Product with ID ${item.productId} not found` });
       }
 
-      // Assuming product has an `inStock` or `stock` field to indicate inventory level
       if (!product.availability) {
         return res.status(400).json({
           message: `Product ${product.name} is out of stock`
@@ -139,7 +143,6 @@ for (const item of cart.products) {
       }
     }
 
-    // If all items are in stock, clear the cart
     cart.products = [];
     await cart.save();
 

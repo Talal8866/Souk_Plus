@@ -66,7 +66,7 @@ exports.deleteProduct = async (req, res) => {
 // Get Product Details
 exports.getProductDetails = async (req, res) => {
   const { productId } = req.params;
-  const userId = req.user.type == 'user' ? req.user.id : null;
+  const userId = req.user && req.user.type === 'user' ? req.user.id : null;
 
   try {
     const product = await Product.findById(productId).populate('linkedShop');
