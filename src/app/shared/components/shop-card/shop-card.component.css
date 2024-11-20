@@ -1,16 +1,5 @@
-.container{
-    display: flex;
-    height: 180px;
-    width: 1230px;
-    column-gap: 30px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 .img-container{
-    border: var(--gray) 1px solid;
+    border: var(--dark-maincolor) 1px solid;
     border-radius: 50%;
     width: 180px;
     height: 180px;
@@ -21,4 +10,5 @@
     width: 180px;
     height: 180px;
     overflow: hidden;
+    cursor: pointer;
 }

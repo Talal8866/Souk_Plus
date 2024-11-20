@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductserviceService } from 'src/app/products/services/productservice.service';
 import { ShopServiceService } from '../../services/shop-service.service';
 
@@ -8,50 +8,44 @@ import { ShopServiceService } from '../../services/shop-service.service';
   styleUrls: ['./all-shops.component.css']
 })
 export class AllShopsComponent {
-  constructor(private product_servive: ProductserviceService, private shop_service: ShopServiceService) { }
+  constructor(private product_service: ProductserviceService, private shop_service: ShopServiceService) { }
 
-  @Input() categories: any[] = [];
+  categories: any[] = [];
   shops: any[] = [];
-  // categories: any[] = [];
 
   ngOnInit() {
-    this.getShops_Here()
-    this.getCategories_Here()
+    this.getShops_Here();
+    this.getCategories_Here();
   }
 
   filtercategory(event: any) {
     let value = event.target.value;
-    if (value == "all") {
-      this.getShops_Here()
-    }
-    else {
-      this.getShops_byCategories_Here(value)
+    if (value === "all") {
+      this.getShops_Here();
+    } else {
+      this.getShops_byCategories_Here(value);
     }
   }
 
   getShops_Here() {
-    this.product_servive.getShops().subscribe((res: any) => {
-      this.shops = res;
-    },
-     error => {
-      alert("Couldn't get Shops")
-    }
-   )
+    this.product_service.getShops().subscribe((res: any) => {
+      this.shops = Array.isArray(res) ? res : [res];
+    }, error => {
+      alert("Couldn't get Shops");
+    });
   }
 
   getCategories_Here() {
-    this.product_servive.getAllCategories().subscribe((res: any) => {
-      this.categories  = res;
-    },
-     error => {
-      alert("Couldn't get Categories")
-    }
-   )
+    this.product_service.getAllCategories().subscribe((res: any) => {
+      this.categories = res.categories || res;
+    }, error => {
+      alert("Couldn't get Categories");
+    });
   }
 
   getShops_byCategories_Here(keyWord: string) {
-    this.product_servive.getShops_byCategories(keyWord).subscribe((res: any) => {
-      this.shops = res;
-    })
+    this.product_service.getShops_byCategories(keyWord).subscribe((res: any) => {
+      this.shops = res.shops || res; 
+    });
   }
 }

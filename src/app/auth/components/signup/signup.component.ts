@@ -10,7 +10,6 @@ import { AuthServiceService } from '../../services/auth.service.service';
 })
 export class SignupComponent {
   constructor(private routes: Router, private service: AuthServiceService) { }
-
   signupForm!: FormGroup;
   showPassword = false;
 

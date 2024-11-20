@@ -9,7 +9,6 @@
     display: flex;
     column-gap: 50px;
     margin-top: 110px;
-    margin-left: 50px;
 }
 
 .top .left {
@@ -116,6 +115,23 @@
     border-radius: 4px;
     width: 984px;
     height: 390px;
+}
+
+
+.main .right .bottomform form .input-icon{
+    position: relative;
+
+}
+
+.main .right .bottomform form .show{
+    cursor: pointer;
+    color: var(--dark-gray);
+    background: none;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 30px;
+    top: 10px;
 }
 
 .main .right .bottomform span {
@@ -243,7 +259,7 @@ input[type="number"]::-webkit-outer-spin-button {
     font-weight: 900;
     font-size: 40px;
     line-height: 59px;
-    width: 263px;
+    width: 563px;
     height: 59px;
 }
 
@@ -266,20 +282,20 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .products {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
-    column-gap: 100px;
-    margin-left: 50px;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    column-gap: 30px;
+    row-gap: 60px;
+    margin-bottom: 100px;
+    margin-left: 60px;
 }
 
-section .add-product {
+.add-product {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    row-gap: 10px;
     width: 234px;
     height: 320px;
     background-color: #dceef9;
@@ -288,14 +304,16 @@ section .add-product {
     color: var(--dark-maincolor);
     font-size: 20px;
     font-weight: 700;
+        margin-top: 80px;
+
     text-transform: uppercase;
 }
 
-section .add-product span {
+.add-product span {
     cursor: pointer;
 }
 
-section .add-product mat-icon {
+.add-product mat-icon {
     cursor: pointer;
     font-weight: 900;
 }
@@ -305,7 +323,6 @@ section .add-product mat-icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: var(--gray) solid 2px;
     border-radius: 10px;
     height: 320px;
     width: 234px;
@@ -318,7 +335,7 @@ section .add-product mat-icon {
     cursor: pointer;
     position: relative;
     right: 101px;
-    top: 32px;
+    top: 87px;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -331,7 +348,7 @@ section .add-product mat-icon {
     cursor: pointer;
     position: relative;
     left: 101px;
-    top: 3px;
+    top: 58px;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -373,4 +390,9 @@ section .add-product mat-icon {
     height: 250px;
     overflow: hidden;
     border-radius: 50%;
+}
+
+.all-products{
+    display: flex;
+    width: 1500px;
 }

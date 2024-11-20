@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="landing">
+<section class="landing">
     <div class="top">
         <div class="left">
             <h1>A new way to shop and sell your products</h1>
@@ -29,8 +29,8 @@
             <figcaption>your own store</figcaption>
         </figure>
     </div>
-</div>
-<div class="categories">
+</section>
+<section class="categories">
     <div class="title1">
         <span>Categories</span>
     </div>
@@ -62,19 +62,23 @@
             <figcaption routerLink="/all-products" class="span6">Culture and Art</figcaption>
         </figure>
     </div>
-</div>
+</section>
 <div class="products" id="shop-now">
     <div class="title">
-        <span class="pro">products</span>
+        <span class="pro">featured products</span>
         <a class="bro" routerLink="/all-products">browse all products<mat-icon>arrow_forward</mat-icon></a>
     </div>
-    <app-product *ngFor="let item of feturedProducts"></app-product>
+    <div class="product-container">
+        <app-product *ngFor="let item of feturedProducts" [product]="item"></app-product>
+    </div>
 </div>
-<div class="products" id="shops">
+<div class="shops" id="shops">
     <div class="title">
-        <span class="pro">Shops</span>
+        <span class="pro">featured Shops</span>
         <a class="bro" routerLink="/all-shops">browse all Shops<mat-icon>arrow_forward</mat-icon></a>
     </div>
-    <app-shop-card *ngFor="let item of feturedShops"></app-shop-card>
+    <div class="shops-container">
+        <app-shop-card *ngFor="let item of feturedShops" [shop]="item"></app-shop-card>
+    </div>
 </div>
 <app-footer></app-footer>

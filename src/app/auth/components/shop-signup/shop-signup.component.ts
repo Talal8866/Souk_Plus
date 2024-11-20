@@ -36,7 +36,7 @@ export class ShopSignupComponent {
         address: this.shopForm.value.shopaddress,
         phoneNumber: this.shopForm.value.shopnumber,
         shopCategory: this.shopForm.value.shopcategory,
-        logo: this.shopForm.value.image,
+        logo: this.shopForm.value.image,  // رفع مسار الصورة فقط
         confirmPassword: this.shopForm.value.confirmpass,
       };
 
@@ -66,12 +66,13 @@ export class ShopSignupComponent {
       reader.onload = (e) => {
         if (e.target?.result) {
           this.imageUrl = e.target.result;
-          this.shopForm.patchValue({ image: e.target.result }); // Base64 string
+          // تخزين مسار الصورة بدلاً من تحميل الصورة نفسها
+          this.shopForm.patchValue({ image: `Online Stores/uploads/${file.name}` });
         }
       };
       reader.readAsDataURL(file);
+    }
   }
-}
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('pass');
@@ -92,5 +93,4 @@ export class ShopSignupComponent {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth.service.service';
+import { AuthStatusService } from '../../../shared/services/auth-status.service';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,15 @@ import { AuthServiceService } from '../../services/auth.service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private routes: Router, private service: AuthServiceService) { }
+  constructor(
+    private routes: Router,
+    private service: AuthServiceService,
+    private authStateService: AuthStatusService
+  ) { }
 
   loginForm!: FormGroup;
   users: any[] = [];
-  type: string = 'User';
+  type: string = 'user';
   showPassword = false;
 
   ngOnInit() {
@@ -23,33 +28,25 @@ export class LoginComponent {
       type: new FormControl(this.type)
     });
   }
-
-  getRole(event: any) {
-    this.type = event.target.value;
-  }
-
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-
   Submit() {
     const model = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.pass,
     };
-
-    const loginService = this.type === 'user'
+    const loginService = this.loginForm.value.type === 'user'
       ? this.service.loginuser_service(model)
       : this.service.loginshop_service(model);
-
     loginService.subscribe(
       (res: any) => {
         console.log('Login response:', res);
         this.service.setToken(res.token);
         this.service.setCurrentUser(res.user);
+        this.authStateService.setCurrentUser(res.user);
         alert('Success');
-        console.log(res);
-        const navigateTo = this.type === 'user' ? '/client-details' : '/edit-profile';
+        const navigateTo = this.loginForm.value.type === 'user' ? '/client-details' : '/edit-profile';
         this.routes.navigate([navigateTo]);
       },
       err => {

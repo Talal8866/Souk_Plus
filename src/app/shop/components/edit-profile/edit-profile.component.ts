@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
 import { ShopServiceService } from '../../services/shop-service.service';
 import { ProductserviceService } from 'src/app/products/services/productservice.service';
+import { AuthStatusService } from 'src/app/shared/services/auth-status.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,17 +12,28 @@ import { ProductserviceService } from 'src/app/products/services/productservice.
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent {
-  constructor(private fb: FormBuilder, private service_auth: AuthServiceService,
-    private shop_servive: ShopServiceService, private Products_service: ProductserviceService) { }
+  constructor(
+    private fb: FormBuilder,
+    private service_auth: AuthServiceService,
+    private shop_service: ShopServiceService,
+    private Products_service: ProductserviceService,
+    private authStatusService: AuthStatusService,
+    private router: Router
+  ) { }
 
   changepassForm!: FormGroup;
   editprofileForm!: FormGroup;
   changelogoForm!: FormGroup;
   changedescForm!: FormGroup;
-  @Input() type: string = "User"
-  @Input() shopProducts: any[] = [];
+  @Input() type: string = "User";
+  @Input() isClient: boolean = false;
+  @Input() isShopOwner: boolean = false;
+  showPassword = false;
+  shopProducts: any[] = [];
   imageUrl: string | ArrayBuffer | null = null;
-  name: any = {}
+  name: any = {};
+  selectedShopId: string = '';
+  shopName: string = '';
 
   ngOnInit(): void {
     this.changelogoForm = new FormGroup({
@@ -35,18 +48,22 @@ export class EditProfileComponent {
       currentPassword: [null, Validators.required],
       newpass: [null, [Validators.required, Validators.minLength(8)]],
       confirmpass: [null, Validators.required]
-    })
+    });
 
     this.editprofileForm = this.fb.group({
-      name: [null],
-      shopCategory: [null],
-      email: [null],
-      address: [null],
-      number: [null, [Validators.pattern(/^\+?[1-9]\d{1,14}$/)]]
-    })
+      shopname: [null, Validators.required],
+      shopcategory: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      address: [null, Validators.required],
+      number: [null, [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]]
+    });
 
     this.getShopByID_Here();
     this.getShopProducts_Here();
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   logout() {
@@ -54,7 +71,9 @@ export class EditProfileComponent {
       this.service_auth.logoutuser_service().subscribe(
         (res: any) => {
           alert("You have logged out");
-          this.service_auth.setCurrentUser(null); // Clear current user
+          this.authStatusService.clearCurrentUser();
+          this.router.navigate(['/login']);
+          this.isClient = false;
           console.log(res);
         },
         (error: any) => {
@@ -65,7 +84,9 @@ export class EditProfileComponent {
       this.service_auth.logoutshop_service().subscribe(
         (res: any) => {
           alert("You have logged out");
-          this.service_auth.setCurrentUser(null); // Clear current user
+          this.authStatusService.clearCurrentUser();
+          this.router.navigate(['/login']);
+          this.isShopOwner = false;
           console.log(res);
         },
         (error: any) => {
@@ -78,41 +99,118 @@ export class EditProfileComponent {
   Submit_Changes() {
     const model = {
       name: this.editprofileForm.value.shopname,
-      shopCategory: this.editprofileForm.value.shopcategory,
       email: this.editprofileForm.value.email,
       address: this.editprofileForm.value.address,
-      phoneNumber: this.editprofileForm.value.number
-    }
-    this.shop_servive.changeShopData(model).subscribe(res => {
-      alert("success")
-    })
+      phoneNumber: this.editprofileForm.value.number,
+      shopCategory: this.editprofileForm.value.shopcategory
+    };
+    this.shop_service.changeShopData(model).subscribe(
+      res => {
+        alert("Profile updated successfully");
+      },
+      error => {
+        alert("Couldn't change shop information");
+      }
+    );
   }
 
   Submit_pass() {
     const model = {
       password: this.changepassForm.value.newpass
-    }
-    this.shop_servive.changeShoppassword(model).subscribe(res => {
-      alert("success")
-    })
+    };
+    this.shop_service.changeShoppassword(model).subscribe(
+      res => {
+        alert("Password changed successfully");
+      },
+      error => {
+        alert("Couldn't change shop password");
+      }
+    );
+  }
+
+  Submit_Logo() {
+    const formData = new FormData();
+    formData.append('logo', this.changelogoForm.get('newlogo')?.value);
+    this.shop_service.changeShopLogo(formData).subscribe(
+      res => {
+        alert("Logo updated successfully");
+      },
+      error => {
+        alert("Couldn't change shop logo");
+      }
+    );
+  }
+
+  Submit_Desc() {
+    const model = {
+      description: this.changedescForm.value.newdesc
+    };
+    this.shop_service.changeShopDescription(model).subscribe(
+      res => {
+        alert("Description updated successfully");
+      },
+      error => {
+        alert("Couldn't change shop description");
+      }
+    );
   }
 
   getShopByID_Here() {
-    this.Products_service.getShopByID(this.name).subscribe(res => {
-      this.name = res
-    })
+    this.Products_service.getShopByID().subscribe(
+      (res: any) => {
+        this.service_auth.setCurrentUser(res);
+        this.name = res;
+        this.editprofileForm.patchValue({
+          shopname: res.name,
+          shopcategory: res.shopCategory,
+          email: res.email,
+          address: res.address,
+          number: res.phoneNumber
+        });
+        alert("Welcome To Your Profile");
+      },
+      error => {
+        alert("Couldn't get Shop profile");
+        console.error('Error:', error);
+      }
+    );
   }
 
   getShopProducts_Here() {
-    this.shop_servive.getShopProducts(this.name).subscribe((res: any) => {
-      this.shopProducts = res;
-    });
+    this.Products_service.getShopByID().subscribe(
+      (res: any) => {
+        if (Array.isArray(res.products)) {
+          this.shopProducts = res.products; 
+        } else {
+          console.error('Expected products to be an array');
+          this.shopProducts = [];
+        }
+      },
+      error => {
+        alert("Couldn't get Shop products");
+        console.error('Error:', error);
+        this.shopProducts = [];
+      }
+    );
   }
 
   delete_Product(item: any) {
-    this.shop_servive.deleteProduct(item).subscribe((res: any) => {
-      res = alert("The Product Deleted Successfully");
-    });
+    const productId = item._id || item.id; 
+    if (productId) {
+      this.shop_service.deleteProduct(productId).subscribe(
+        (res: any) => {
+          alert("Product deleted successfully");
+          this.getShopProducts_Here();
+        },
+        (error: any) => {
+          alert("Couldn't delete product");
+          console.error('Error:', error);
+        }
+      );
+    } else {
+      console.error("Product ID is undefined or invalid");
+      alert("Error: Product ID is undefined or invalid");
+    }
   }
 
   onFileSelected(event: Event): void {
@@ -123,7 +221,7 @@ export class EditProfileComponent {
       reader.onload = (e) => {
         if (e.target?.result) {
           this.imageUrl = e.target.result;
-          this.editprofileForm.patchValue({ image: e.target.result }); // Base64 string
+          this.editprofileForm.patchValue({ image: e.target.result });
         }
       };
       reader.readAsDataURL(file);
@@ -131,3 +229,4 @@ export class EditProfileComponent {
   }
 
 }
+

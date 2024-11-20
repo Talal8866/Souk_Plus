@@ -7,29 +7,27 @@ import { HomeServiceService } from '../../services/home-service.service';
   styleUrls: ['./contents.component.css']
 })
 export class ContentsComponent {
-  constructor(private service:HomeServiceService){}
+  constructor(private service: HomeServiceService) { }
 
   feturedShops: any[] = [];
   feturedProducts: any[] = [];
 
-  ngOnInit(){
+  ngOnInit() {
     this.getFeturedProducts_Here();
     this.getFeturedShops_Here();
   }
 
-  getFeturedProducts_Here(){
-    this.service.getFeaturedProducts().subscribe(res=>{
-      res = this.feturedProducts;
-      console.log(res);
-
-    })
+  getFeturedProducts_Here() {
+    this.service.getFeaturedProducts().subscribe((res: any) => {
+      this.feturedProducts = res.products; // Assign response data to feturedProducts
+      console.log(this.feturedProducts);
+    });
   }
 
-  getFeturedShops_Here(){
-    this.service.getFeaturedShops().subscribe(res=>{
-      res = this.feturedShops;
-      console.log(res);
-    })
+  getFeturedShops_Here() {
+    this.service.getFeaturedShops().subscribe((res: any) => {
+      this.feturedShops = res.shops; // Assign response data to feturedShops
+      console.log(this.feturedShops);
+    });
   }
-
 }

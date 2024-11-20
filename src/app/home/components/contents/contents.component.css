@@ -180,19 +180,21 @@
 }
 
 .products {
-    height: 650px;
+    height: 850px;
 }
 
-.products .title {
+.products .title,
+.shops .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--gray);
     height: 73px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.products .title .pro {
+.products .title .pro,
+.shops .title .pro {
     font-size: 32px;
     line-height: 40px;
     text-transform: uppercase;
@@ -200,7 +202,8 @@
     margin-left: 50px;
 }
 
-.products .title .bro {
+.products .title .bro,
+.shops .title .bro {
     display: flex;
     align-items: center;
     column-gap: 5px;
@@ -209,4 +212,23 @@
     line-height: 34px;
     margin-right: 50px;
     font-weight: 700;
+}
+
+.products .product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-left: 55px;
+}
+
+.shops .shops-container {
+    display: flex;
+    height: 380px;
+    column-gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1230px;
+    flex-wrap: wrap;
+    margin-left: 140px;
 }

@@ -31,11 +31,25 @@
             <hr>
             <form [formGroup]="changepassForm" (ngSubmit)="Submit_pass()">
                 <label for="currentPassword">Current Password</label>
-                <input type="password" formControlName="currentPassword" id="currentPassword">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="currentPassword"
+                        id="currentPassword" value="{{name.password}}">
+                </div>
+
                 <label for="pass">Password</label>
-                <input type="password" formControlName="newpass" id="pass" placeholder="8+ Characters">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="newpass"
+                        id="pass" placeholder="8+ Characters">
+                </div>
+
                 <label for="confirmpass">Confirm Password</label>
-                <input type="password" formControlName="confirmpass" id="confirmpass">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="confirmpass"
+                        id="confirmpass">
+                </div>
                 <button
                     [disabled]="changepassForm.invalid || (changepassForm.value.newpass ==! changepassForm.value.confirmpass)"
                     (click)="Submit_pass()">change password

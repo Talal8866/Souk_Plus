@@ -7,11 +7,12 @@
     <input type="search" placeholder="Search for anything..." (input)="onSearch($event)">
     <ul class="icons">
       <mat-icon class="search" (click)="onSearch($event)">search</mat-icon>
-      <li *ngIf="isClient" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>your cart</li>
       <li *ngIf="!currentUser" routerLink="/login"><mat-icon>login</mat-icon>login</li>
-      <li *ngIf="currentUser"><mat-icon>person</mat-icon></li>
-      <li *ngIf="isShopOwner" routerLink="/edit-profile">{{currentUser?.name}}</li>
-      <li *ngIf="isClient" routerLink="/client-details">{{currentUser?.name}}</li>
+    
+      <li *ngIf="isClient" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon></li>
+      <li *ngIf="isClient" routerLink="/wishlist"><mat-icon>favorite</mat-icon></li>
+      <li *ngIf="isShopOwner" routerLink="/edit-profile"><mat-icon>person</mat-icon>{{shop.name}}</li>
+      <li *ngIf="isClient" routerLink="/client-details"><mat-icon>person</mat-icon>{{user.name}}</li>
     </ul>
   </nav>
   <nav class="bellow-nav">

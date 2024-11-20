@@ -3,16 +3,13 @@
     <form [formGroup]="shopForm" class="shop">
         <div class="spans">
             <span routerLink="/signup" routerLinkActive="active1">Private</span>
-            <span routerLink="/shop-signup" routerLinkActive="active2"
-                [routerLinkActiveOptions]="{ exact: true }">Business</span>
+            <span routerLink="/shop-signup" routerLinkActive="active2" [routerLinkActiveOptions]="{ exact: true }">Business</span>
         </div>
         <div class="inputs">
-            <label for="shopname">shop Name</label>
+            <label for="shopname">Shop Name</label>
             <input type="text" formControlName="shopname" id="shopname">
             <div class="small">
-                <small *ngIf="shopForm.get('shopname')?.errors?.['required'] && shopForm.get('shopname')?.dirty">Shop
-                    Name
-                    is required</small>
+                <small *ngIf="shopForm.get('shopname')?.errors?.['required'] && shopForm.get('shopname')?.dirty">Shop Name is required</small>
             </div>
             <label for="shopcategory">Shop Category</label>
             <select aria-placeholder="Select..." formControlName="shopcategory" id="shopcategory">
@@ -24,54 +21,38 @@
                 <option value="Culture and Art">Culture and Art</option>
             </select>
             <div class="small">
-                <small
-                    *ngIf="shopForm.get('shopcategory')?.errors?.['required'] && shopForm.get('shopcategory')?.dirty">Shop
-                    Category
-                    is required</small>
+                <small *ngIf="shopForm.get('shopcategory')?.errors?.['required'] && shopForm.get('shopcategory')?.dirty">Shop Category is required</small>
             </div>
             <label for="shopemail">Email Address</label>
             <input type="email" formControlName="shopemail" id="shopemail">
             <div class="small">
-                <small *ngIf="shopForm.get('shopemail')?.errors?.['required'] && shopForm.get('shopemail')?.dirty">Email
-                    is required</small>
+                <small *ngIf="shopForm.get('shopemail')?.errors?.['required'] && shopForm.get('shopemail')?.dirty">Email is required</small>
             </div>
             <label for="shopaddress">Address</label>
             <input type="text" formControlName="shopaddress" id="shopaddress">
             <div class="small">
-                <small
-                    *ngIf="shopForm.get('shopaddress')?.errors?.['required'] && shopForm.get('shopaddress')?.dirty">Shop
-                    Address
-                    is required</small>
+                <small *ngIf="shopForm.get('shopaddress')?.errors?.['required'] && shopForm.get('shopaddress')?.dirty">Shop Address is required</small>
             </div>
             <label for="shopnumber">Phone Number</label>
             <input type="number" formControlName="shopnumber" id="shopnumber">
             <div class="small">
-                <small
-                    *ngIf="shopForm.get('shopnumber')?.errors?.['required'] && shopForm.get('shopnumber')?.dirty">Phone
-                    Number
-                    is required</small>
+                <small *ngIf="shopForm.get('shopnumber')?.errors?.['required'] && shopForm.get('shopnumber')?.dirty">Phone Number is required</small>
             </div>
             <label for="shoppass">Password</label>
             <div class="input-icon">
-                <input [type]="showPassword ? 'text' : 'password'" type="password" formControlName="pass" id="shoppass"
-                    placeholder="8+ characters">
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="pass" id="shoppass" placeholder="8+ characters">
                 <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
             </div>
             <div class="small">
-                <small *ngIf="shopForm.get('pass')?.errors?.['required'] && shopForm.get('pass')?.dirty">Password
-                    is required</small>
+                <small *ngIf="shopForm.get('pass')?.errors?.['required'] && shopForm.get('pass')?.dirty">Password is required</small>
             </div>
             <label for="shopconfirmpass">Confirm Password</label>
             <div class="input-icon">
-                <input [type]="showPassword ? 'text' : 'password'" type="password" formControlName="confirmpass"
-                    id="shopconfirmpass">
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="confirmpass" id="shopconfirmpass">
                 <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
             </div>
             <div class="small">
-                <small
-                    *ngIf="shopForm.get('confirmpass')?.errors?.['required'] && shopForm.get('confirmpass')?.dirty">Confirm
-                    Password
-                    is required</small>
+                <small *ngIf="shopForm.get('confirmpass')?.errors?.['required'] && shopForm.get('confirmpass')?.dirty">Confirm Password is required</small>
             </div>
             <label for="file-input">Upload Your Logo</label>
             <div class="file-upload">
@@ -79,8 +60,7 @@
             </div>
             <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" />
             <div class="small">
-                <small *ngIf="shopForm.get('image')?.errors?.['required'] && shopForm.get('image')?.dirty">Logo
-                    is required</small>
+                <small *ngIf="shopForm.get('image')?.errors?.['required'] && shopForm.get('image')?.dirty">Logo is required</small>
             </div>
             <button [disabled]="shopForm.invalid || (shopForm.value.pass !== shopForm.value.confirmpass)"
                 [ngStyle]="getButtonStyles()" (click)="Submit2()" class="submit">

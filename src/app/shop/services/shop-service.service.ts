@@ -1,42 +1,49 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthServiceService } from '../../auth/services/auth.service.service'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopServiceService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthServiceService) { }
 
   changeShopData(model: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.patch(`http://localhost:3000/api/shops/profile/update${model}`, { headers }); // except description and logo
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.patch(`http://localhost:3000/api/shops/profile/update`, model, { headers });
   }
 
   changeShoppassword(model: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.post(`http://localhost:3000/api/shops/profile/change-password${model}`, { headers }); 
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.post(`http://localhost:3000/api/shops/profile/change-password`, model, { headers });
   }
 
-  getShopProducts(name: String) {
-    return this.http.get('http://localhost:3000/api/products/:shopName' + name) 
+  changeShopLogo(model: any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.post(`http://localhost:3000/api/shops/profile/logo`, model, { headers });
   }
 
-  deleteProduct(id: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); 
-    return this.http.delete(`http://localhost:3000/api/products/:productId${id}`, { headers });
+  changeShopDescription(model: any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.patch(`http://localhost:3000/api/shops/profile/description`, model, { headers });
   }
 
-  updateProduct(id: any, model: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); 
-    return this.http.post(`http://localhost:3000/api/products${id}`, { headers }, model);
+  deleteProduct(productId: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.delete(`http://localhost:3000/api/products/${productId}`, { headers });
   }
 
-  addProduct(id: any, model: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); 
-    return this.http.post(`http://localhost:3000/api/products${id}`, { headers }, model);
+  updateProduct(model: any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.post(`http://localhost:3000/api/products`, model, { headers });
   }
 
-  getToken() {
-    return localStorage.getItem('token');
+  addProduct(model: any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    return this.http.post(`http://localhost:3000/api/products`, model, { headers });
+  }
+
+  getShopProductsByName(shopName: string) {
+    return this.http.get(`http://localhost:3000/api/products/shop/${shopName}`);
   }
 }

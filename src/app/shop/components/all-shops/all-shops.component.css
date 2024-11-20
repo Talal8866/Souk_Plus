@@ -4,6 +4,13 @@
     margin-bottom: 100px;
 }
 
+.page-container .container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 30px;
+    margin-top: 30px;
+}
+
 .categories {
     display: flex;
     flex-direction: column;

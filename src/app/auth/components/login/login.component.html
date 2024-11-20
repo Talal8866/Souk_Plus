@@ -5,11 +5,11 @@
             <h1>Log In</h1>
         </div>
         <div class="inputs">
-            <div class="radios" (change)="getRole($event)" formControlName="type">
-                <input name="option" type="radio" value="user" id="User" class="input1 custom-radio ">
+            <div class="radios">
+                <input type="radio" formControlName="type" value="user" id="User" class="input1 custom-radio ">
                 <label for="User" class="label1">Private</label>
-                <input name="option" type="radio" value="Shop" id="Shop" class="input2 custom-radio ">
-                <label for="Shop" class="label2">Bussines</label>
+                <input type="radio" formControlName="type" value="Shop" id="Shop" class="input2 custom-radio ">
+                <label for="Shop" class="label2">Business</label>
             </div>
             <label for="email">Email Address</label>
             <input type="email" formControlName="email" id="email">
@@ -19,7 +19,7 @@
             </div>
             <label for="pass">Password</label>
             <div class="input-icon">
-                <input [type]="showPassword ? 'text' : 'password'" type="password" formControlName="pass" id="pass">
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="pass" id="pass">
                 <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
             </div>
             <div class="small">
@@ -30,7 +30,7 @@
                 In<mat-icon>arrow_forward</mat-icon></button>
             <div class="create">
                 <span class="line-with-or">or</span>
-                <button>new to clicon? <a routerLink="/signup">sign up <mat-icon>arrow_forward</mat-icon></a></button>
+                <button>new to Souq Plus? <a routerLink="/signup">sign up <mat-icon>arrow_forward</mat-icon></a></button>
             </div>
         </div>
     </form>
