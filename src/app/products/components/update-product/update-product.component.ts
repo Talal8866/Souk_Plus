@@ -11,7 +11,7 @@ export class UpdateProductComponent {
   constructor(private shop_service: ShopServiceService) { }
 
   updateProductForm!: FormGroup;
-  @Input() name: any;
+  @Input() name: any = {};  
   base64: any = '';
 
   ngOnInit(): void {
@@ -20,7 +20,7 @@ export class UpdateProductComponent {
       availability: new FormControl(),
       price: new FormControl(),
       description: new FormControl(),
-      image: new FormControl(this.base64 = this.name.pictures),
+      image: new FormControl(),
       quantity: new FormControl(),
     })
   }
@@ -34,11 +34,10 @@ export class UpdateProductComponent {
       pictures: this.updateProductForm.value.image,
       quantity: this.updateProductForm.value.quantity
     }
-    this.shop_service.updateProduct(this.name, model).subscribe((res: any) => {
+    this.shop_service.updateProduct(model).subscribe((res: any) => {
       res = alert("your product update successfully")
     })
   }
-
 
   getimagepath(event: any): void {
     const file = event.target.files[0];
