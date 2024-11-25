@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';  
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class AuthServiceService {
   currentUser$ = this.currentUserSubject.asObservable();
   private token: string = '';
   private currentUser: any = null;
-  user = new Subject<any>(); // Emit user changes
 
   loginuser_service(model: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/users/login', model);
@@ -54,10 +53,16 @@ export class AuthServiceService {
 
   decodeToken(token: string): void {
     try {
-      const decodedToken = jwtDecode(token);
-      this.setCurrentUser(decodedToken);
+      const decodedToken: any = jwtDecode(token);
+      if (decodedToken.exp < Date.now() / 1000) {
+        this.logout();
+        this.router.navigate(['/login']);
+      } else {
+        this.setCurrentUser(decodedToken);
+      }
     } catch (e) {
       console.error('Error decoding token:', e);
+      this.logout();
     }
   }
 
@@ -82,6 +87,7 @@ export class AuthServiceService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
 }

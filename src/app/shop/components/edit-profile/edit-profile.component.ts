@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
-import { ShopServiceService } from '../../services/shop-service.service';
-import { ProductserviceService } from 'src/app/products/services/productservice.service';
-import { AuthStatusService } from 'src/app/shared/services/auth-status.service';
 import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ShopServiceService } from '../../services/shop-service.service';
+import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
+import { AuthStatusService } from 'src/app/shared/services/auth-status.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProductserviceService } from 'src/app/products/services/productservice.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -13,27 +13,29 @@ import { Router } from '@angular/router';
 })
 export class EditProfileComponent {
   constructor(
-    private fb: FormBuilder,
-    private service_auth: AuthServiceService,
-    private shop_service: ShopServiceService,
     private Products_service: ProductserviceService,
     private authStatusService: AuthStatusService,
+    private service_auth: AuthServiceService,
+    private shop_service: ShopServiceService,
+    private fb: FormBuilder,
     private router: Router
   ) { }
 
-  changepassForm!: FormGroup;
   editprofileForm!: FormGroup;
+  changepassForm!: FormGroup;
   changelogoForm!: FormGroup;
   changedescForm!: FormGroup;
-  @Input() type: string = "User";
-  @Input() isClient: boolean = false;
+
   @Input() isShopOwner: boolean = false;
-  showPassword = false;
-  shopProducts: any[] = [];
+  @Input() isClient: boolean = false;
+  @Input() type: string = "User";
+ 
   imageUrl: string | ArrayBuffer | null = null;
-  name: any = {};
   selectedShopId: string = '';
+  shopProducts: any[] = [];
   shopName: string = '';
+  showPassword = false;
+  name: any = {};
 
   ngOnInit(): void {
     this.changelogoForm = new FormGroup({
@@ -116,7 +118,9 @@ export class EditProfileComponent {
 
   Submit_pass() {
     const model = {
-      password: this.changepassForm.value.newpass
+      currentPassword: this.changepassForm.value.currentPassword,
+      newPassword: this.changepassForm.value.newpass,
+      confirmPassword: this.changepassForm.value.confirmpass
     };
     this.shop_service.changeShoppassword(model).subscribe(
       res => {
@@ -167,7 +171,6 @@ export class EditProfileComponent {
           address: res.address,
           number: res.phoneNumber
         });
-        alert("Welcome To Your Profile");
       },
       error => {
         alert("Couldn't get Shop profile");
@@ -227,6 +230,5 @@ export class EditProfileComponent {
       reader.readAsDataURL(file);
     }
   }
-
 }
 

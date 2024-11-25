@@ -8,9 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./all-products.component.css']
 })
 export class AllProductsComponent {
-  constructor(private route: ActivatedRoute,
-    private Products_service: ProductserviceService) {
-  }
+  constructor(private Products_service: ProductserviceService) {}
 
   name: string | null = '';
   products: any[] = [];

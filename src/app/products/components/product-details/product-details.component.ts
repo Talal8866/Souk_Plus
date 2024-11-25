@@ -8,21 +8,25 @@ import { ProductserviceService } from '../../services/productservice.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private service: ProductserviceService) {}
+  constructor(
+  private route: ActivatedRoute,
+  private service: ProductserviceService) {}
 
   @Output() item = new EventEmitter();
   @Output() wish_item = new EventEmitter();
   @Input() products: any = {};
 
   _id: string | null = '';
-  data: any = {};
   amount: number = 0;
+  data: any = {};
 
   ngOnInit(): void {
-    this._id = this.route.snapshot.paramMap.get('id');
+    this._id = this.route.snapshot.paramMap.get('productId');
     console.log('Captured ID:', this._id); 
     if (this._id) {
       this.getProductByID_Here(this._id);
+    } else {
+      console.error('Product ID is undefined');
     }
   }
 

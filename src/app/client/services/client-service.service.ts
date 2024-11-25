@@ -5,17 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ClientServiceService {
-
   constructor(private http: HttpClient) { }
 
   changeUserData(model: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.post('http://localhost:3000/api/users/update', model, { headers });
+    return this.http.patch('http://localhost:3000/api/users/profile/update', model, { headers });
   }
 
   changeUserpassword(model: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.post('http://localhost:3000/api/users/change-password', model, { headers });
+    return this.http.post('http://localhost:3000/api/users/profile/change-password', model, { headers });
   }
 
   getUserbyID() {

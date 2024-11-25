@@ -21,7 +21,7 @@
     height: 112px;
     width: 264px;
     padding-left: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .top .left nav ul {
@@ -81,6 +81,7 @@
 
 .main .right .topform form input {
     border: var(--gray) 1px solid;
+    text-transform: capitalize;
     border-radius: 1px;
     height: 44px;
     width: 939px;
@@ -118,12 +119,12 @@
 }
 
 
-.main .right .bottomform form .input-icon{
+.main .right .bottomform form .input-icon {
     position: relative;
 
 }
 
-.main .right .bottomform form .show{
+.main .right .bottomform form .show {
     cursor: pointer;
     color: var(--dark-gray);
     background: none;
@@ -228,7 +229,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .maincontainer {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .maincontainer .landing {
@@ -264,11 +264,15 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .maincontainer .landing .container .details input {
-    font-size: 24px;
-    line-height: 34px;
-    color: var(--dark-gray);
+    border: 1px solid var(--gray);
+    color: var(--mid-gray);
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 20px;
     margin-top: 10px;
-    font-weight: 200;
+    font-weight: 400;
+    width: 640px;
+    height: 150px;
 }
 
 .maincontainer .landing .container .details span {
@@ -304,8 +308,7 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--dark-maincolor);
     font-size: 20px;
     font-weight: 700;
-        margin-top: 80px;
-
+    margin-top: 60px;
     text-transform: uppercase;
 }
 
@@ -334,11 +337,11 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--pink);
     cursor: pointer;
     position: relative;
-    right: 101px;
-    top: 87px;
+    right: 104px;
+    top: 50px;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .product-container .delete {
@@ -347,14 +350,14 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--pink);
     cursor: pointer;
     position: relative;
-    left: 101px;
-    top: 58px;
+    left: 104px;
+    top: 25px;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
-.top .maincontainer .landing .container .img label{
+.top .maincontainer .landing .container .img label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,7 +395,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 50%;
 }
 
-.all-products{
+.all-products {
     display: flex;
     width: 1500px;
 }

@@ -19,11 +19,13 @@ export class ClientDetailsComponent {
     private router: Router
   ) { }
 
-  changepassForm!: FormGroup;
   editprofileForm!: FormGroup;
-  @Input() type: string = "User"
-  @Input() isClient: boolean = false;
+  changepassForm!: FormGroup;
+
   @Input() isShopOwner: boolean = false;
+  @Input() isClient: boolean = false;
+  @Input() type: string = "User"
+  
   showPassword = false;
   name: any = {}
 
@@ -40,7 +42,6 @@ export class ClientDetailsComponent {
       address: [null, Validators.required],
       number: [null, [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]]
     });
-
     this.getUserbyID_Here();
   }
 
@@ -97,7 +98,9 @@ export class ClientDetailsComponent {
 
   Submit_pass() {
     const model = {
-      password: this.changepassForm.value.newpass
+      currentPassword: this.changepassForm.value.currentPassword,
+      newPassword: this.changepassForm.value.newpass,
+      confirmPassword: this.changepassForm.value.confirmpass
     };
     this.service.changeUserpassword(model).subscribe(
       (res: any) => {
@@ -114,7 +117,6 @@ export class ClientDetailsComponent {
       (res: any) => {
         this.service_auth.setCurrentUser(res);
         this.name = res;
-        alert("Welcome To Your Profile");
       },
       error => {
         alert("Couldn't get User profile");

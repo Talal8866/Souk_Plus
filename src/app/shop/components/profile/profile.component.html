@@ -14,11 +14,9 @@
         </div>
     </div>
 </section>
-<section>
-    <div class="shops-products">
-        <div class="products" *ngFor=" let item of shopProducts">
-            <app-product [product]="item" routerLink="/product-details/{{item.id}}"></app-product>
-        </div>
+<section class="shops-products">
+    <div class="products" *ngFor=" let item of shopProducts">
+        <app-product [product]="item" routerLink="/product-details/{{item.id}}"></app-product>
     </div>
 </section>
 <app-footer></app-footer>

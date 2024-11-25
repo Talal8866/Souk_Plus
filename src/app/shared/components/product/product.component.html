@@ -1,10 +1,10 @@
 <div class="container">
     <div class="img-container">
-        <img [src]="imgpath" alt="" [routerLink]="'/product-details/' + product.id">
-        <span [routerLink]="'/profile/' + product.linkedShop"><br>{{shopName}}</span>
+        <img [src]="imgpath" alt="" [routerLink]="['/product-details', product._id]">
+        <span [routerLink]="['/profile', product.linkedShop]"><br>{{shopName}}</span>
     </div>
     <div class="details">
-        <p [routerLink]="'/product-details/' + product.id">{{product.name}}</p>
+        <p [routerLink]="['/product-details', product._id]">{{product.name}}</p>
         <span>{{product.price}}</span>
         <button *ngIf="!addbutton" (click)="addbutton = true">Add to Cart</button>
         <div class="number" *ngIf="addbutton">
