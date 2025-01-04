@@ -7,6 +7,9 @@ exports.addOrUpdateProduct = async (req, res) => {
   const linkedShop = req.user.id;
   const picture = req.file ? req.file.path : null;
 
+  console.log('Request Body:', req.body);
+  console.log('Uploaded File:', req.file);
+
   if (!name || !price || !description || !category) {
     return res.status(400).json({ error: 'Please provide all required fields: name, price, description, category.' });
   }

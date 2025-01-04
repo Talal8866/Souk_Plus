@@ -2,6 +2,7 @@ require('dotenv').config({ path: "./src/backend/config/.env" });
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
+const path = require('path');
 
 const userRoutes = require('./routes/user.routes');
 const shopRoutes = require('./routes/shop.routes');
@@ -21,6 +22,7 @@ app.use(cors(corsOptions));
 
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
 // Connect to MongoDB
 connectDB();
