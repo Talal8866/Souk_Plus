@@ -9,9 +9,7 @@
     </div>
     <div class="container">
         <div *ngFor="let product of products">
-            <app-product [product]="product"></app-product>
-            <a [routerLink]="['/product-details', product._id]">View
-                Details</a>
+            <app-product [product]="product" (item)="addtocart($event)"></app-product>
         </div>
     </div>
 </div>

@@ -380,9 +380,14 @@ input[type="number"]::-webkit-outer-spin-button {
     z-index: -1
 }
 
+.maincontainer .landing .container .img .add-img{
+    border-radius: 50%;
+    color: var(--custom-black);
+    background-color: var(--pink);
+}
+
 .maincontainer .landing .container .img {
     position: relative;
-    border: 1px solid var(--pink);
     border-radius: 50%;
     width: 250px;
     height: 250px;

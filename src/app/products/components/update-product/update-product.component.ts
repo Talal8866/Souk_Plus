@@ -1,8 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
-import { ShopServiceService } from 'src/app/shop/services/shop-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductserviceService } from '../../services/productservice.service';
-import { ActivatedRoute } from '@angular/router';
+import { ShopServiceService } from 'src/app/shop/services/shop-service.service';
 
 @Component({
   selector: 'app-update-product',
@@ -11,9 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UpdateProductComponent implements OnInit {
   constructor(
-    private shop_service: ShopServiceService,
     private product_service: ProductserviceService,
-    private route: ActivatedRoute) { }
+    private shop_service: ShopServiceService,
+    private route: ActivatedRoute
+  ) { }
 
   updateProductForm!: FormGroup;
   @Input() products: any = {};

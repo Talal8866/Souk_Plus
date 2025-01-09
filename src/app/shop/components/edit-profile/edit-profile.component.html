@@ -11,7 +11,8 @@
     <div class="landing">
         <div class="container">
             <div class="img">
-                <img src="{{name.logo}}" alt="">
+                <img [src]="getImagePath(name.logo)">
+                <button class="add-img">+</button>
             </div>
             <div class="details" [formGroup]="changedescForm">
                 <h1>{{name.name}}</h1>

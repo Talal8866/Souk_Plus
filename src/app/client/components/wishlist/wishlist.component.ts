@@ -7,10 +7,13 @@ import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent {
-  constructor(private service_auth: AuthServiceService) { }
+  constructor(
+    private service_auth: AuthServiceService
+  ) { }
 
   @Output() item = new EventEmitter();
   @Input() type: string = "user"
+
   wishlist_products: any[] = [];
 
   ngOnInit(): void {
@@ -22,7 +25,7 @@ export class WishlistComponent {
       this.service_auth.logoutuser_service().subscribe(
         (res: any) => {
           alert("You have logged out");
-          this.service_auth.setCurrentUser(null); // Clear current user
+          this.service_auth.setCurrentUser(null); 
           console.log(res);
         },
         (error: any) => {
@@ -33,7 +36,7 @@ export class WishlistComponent {
       this.service_auth.logoutshop_service().subscribe(
         (res: any) => {
           alert("You have logged out");
-          this.service_auth.setCurrentUser(null); // Clear current user
+          this.service_auth.setCurrentUser(null); 
           console.log(res);
         },
         (error: any) => {
@@ -54,7 +57,7 @@ export class WishlistComponent {
     localStorage.setItem("wishlist", JSON.stringify(this.wishlist_products));
   }
 
-  add_toCart(index: number){
-    this.item.emit({ item: this.wishlist_products[index]}) 
+  add_toCart(index: number) {
+    this.item.emit({ item: this.wishlist_products[index] })
   }
 }

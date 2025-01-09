@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ProductserviceService } from 'src/app/products/services/productservice.service';
 
 @Component({
   selector: 'app-shop-card',
@@ -7,16 +6,16 @@ import { ProductserviceService } from 'src/app/products/services/productservice.
   styleUrls: ['./shop-card.component.css']
 })
 export class ShopCardComponent {
-  constructor(private service: ProductserviceService) { }
+  constructor() { }
 
-  @Input() shop: any; 
   @Input() categories: any[] = [];
+  @Input() shop: any; 
 
   getImagePath(relativePath: string): string {
     if (!relativePath) {
-      return ''; // أو يمكنك إعادة مسار صورة افتراضي
+      return '';
     }
-    return `http://localhost:3000/uploads/${relativePath.split('/').pop()}`; // تكوين URL للصور
+    return `http://localhost:3000/uploads/${relativePath.split('/').pop()}`; 
   }
 
   get_PublicShopHere(){

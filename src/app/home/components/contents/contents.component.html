@@ -69,7 +69,7 @@
         <a class="bro" routerLink="/all-products">browse all products<mat-icon>arrow_forward</mat-icon></a>
     </div>
     <div class="product-container">
-        <app-product *ngFor="let item of feturedProducts" [product]="item"></app-product>
+        <app-product *ngFor="let item of feturedProducts" [product]="item" (item)="addtocart($event)"></app-product>
     </div>
 </div>
 <div class="shops" id="shops">

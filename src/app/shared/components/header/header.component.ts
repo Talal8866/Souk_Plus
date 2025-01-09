@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStatusService } from '../../services/auth-status.service';
-import { ProductserviceService } from 'src/app/products/services/productservice.service';
 import { Router } from '@angular/router';
+import { AuthStatusService } from '../../services/auth-status.service';
 import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
 import { ClientServiceService } from 'src/app/client/services/client-service.service';
+import { ProductserviceService } from 'src/app/products/services/productservice.service';
 
 @Component({
   selector: 'app-header',
@@ -12,22 +12,23 @@ import { ClientServiceService } from 'src/app/client/services/client-service.ser
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private authStatusService: AuthStatusService,
     private productService: ProductserviceService,
-    private authService: AuthServiceService,
+    private authStatusService: AuthStatusService,
     private clientService: ClientServiceService,
+    private authService: AuthServiceService,
     private router: Router
-  ) { }
+  ) {}
 
-  currentUser: any = null;
   isShopOwner: boolean = false;
   isClient: boolean = false;
-  searchError: string = '';
-  shop: any = {};
-  user: any = {};
   searchResults: any[] = [];
+  searchError: string = '';
+  currentUser: any = null;
   products: any[] = [];
   shops: any[] = [];
+  shop: any = {};
+  user: any = {};
+  searchInputStyle: any = {}; // Add this property to hold dynamic styles
 
   ngOnInit(): void {
     this.authStatusService.currentUser$.subscribe(user => {
@@ -85,7 +86,6 @@ export class HeaderComponent implements OnInit {
     this.clientService.getUserbyID().subscribe(res => {
       this.authService.setCurrentUser(res);
       this.user = res;
-      console.log('User Name:', this.user.name);
     }, error => {
       console.error('Error fetching user name:', error);
     });
@@ -95,7 +95,6 @@ export class HeaderComponent implements OnInit {
     this.productService.getShopByID().subscribe(res => {
       this.authService.setCurrentUser(res);
       this.shop = res;
-      console.log('Shop Name:', this.shop.name);
     }, error => {
       console.error('Error fetching shop name:', error);
     });
@@ -118,13 +117,31 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
+  onFocus() {
+    this.searchInputStyle = {
+      border: '2px solid blue',
+      backgroundColor: '#f0f0f0',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      outline: 'none'
+    };
+  }
+
+  onBlur() {
+    this.searchInputStyle = {
+      border: '',
+      backgroundColor: '',
+      boxShadow: '',
+      outline: ''
+    };
+  }
+
   logout() {
     this.authService.logout();
     this.authStatusService.clearCurrentUser();
     this.router.navigate(['/login']);
 
-    this.isClient = false;
     this.isShopOwner = false;
+    this.isClient = false;
     this.shop = {};
     this.user = {};
   }

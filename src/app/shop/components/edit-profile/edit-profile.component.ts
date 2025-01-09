@@ -29,7 +29,7 @@ export class EditProfileComponent {
   @Input() isShopOwner: boolean = false;
   @Input() isClient: boolean = false;
   @Input() type: string = "User";
- 
+
   imageUrl: string | ArrayBuffer | null = null;
   selectedShopId: string = '';
   shopProducts: any[] = [];
@@ -47,16 +47,16 @@ export class EditProfileComponent {
     });
 
     this.changepassForm = this.fb.group({
+      confirmpass: [null, Validators.required],
       currentPassword: [null, Validators.required],
-      newpass: [null, [Validators.required, Validators.minLength(8)]],
-      confirmpass: [null, Validators.required]
+      newpass: [null, [Validators.required, Validators.minLength(8)]]
     });
 
     this.editprofileForm = this.fb.group({
+      address: [null, Validators.required],
       shopname: [null, Validators.required],
       shopcategory: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
-      address: [null, Validators.required],
       number: [null, [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]]
     });
 
@@ -100,8 +100,8 @@ export class EditProfileComponent {
 
   Submit_Changes() {
     const model = {
-      name: this.editprofileForm.value.shopname,
       email: this.editprofileForm.value.email,
+      name: this.editprofileForm.value.shopname,
       address: this.editprofileForm.value.address,
       phoneNumber: this.editprofileForm.value.number,
       shopCategory: this.editprofileForm.value.shopcategory
@@ -118,9 +118,9 @@ export class EditProfileComponent {
 
   Submit_pass() {
     const model = {
-      currentPassword: this.changepassForm.value.currentPassword,
       newPassword: this.changepassForm.value.newpass,
-      confirmPassword: this.changepassForm.value.confirmpass
+      confirmPassword: this.changepassForm.value.confirmpass,
+      currentPassword: this.changepassForm.value.currentPassword
     };
     this.shop_service.changeShoppassword(model).subscribe(
       res => {
@@ -143,6 +143,29 @@ export class EditProfileComponent {
         alert("Couldn't change shop logo");
       }
     );
+  }
+
+  getImagePath(relativePath: string): string {
+    if (!relativePath) {
+      return '';
+    }
+    return `http://localhost:3000/uploads/${relativePath.split('/').pop()}`;
+  }
+
+  
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          this.imageUrl = e.target.result;
+          this.editprofileForm.patchValue({ image: e.target.result });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   Submit_Desc() {
@@ -183,7 +206,7 @@ export class EditProfileComponent {
     this.Products_service.getShopByID().subscribe(
       (res: any) => {
         if (Array.isArray(res.products)) {
-          this.shopProducts = res.products; 
+          this.shopProducts = res.products;
         } else {
           console.error('Expected products to be an array');
           this.shopProducts = [];
@@ -198,7 +221,7 @@ export class EditProfileComponent {
   }
 
   delete_Product(item: any) {
-    const productId = item._id || item.id; 
+    const productId = item._id || item.id;
     if (productId) {
       this.shop_service.deleteProduct(productId).subscribe(
         (res: any) => {
@@ -213,21 +236,6 @@ export class EditProfileComponent {
     } else {
       console.error("Product ID is undefined or invalid");
       alert("Error: Product ID is undefined or invalid");
-    }
-  }
-
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result) {
-          this.imageUrl = e.target.result;
-          this.editprofileForm.patchValue({ image: e.target.result });
-        }
-      };
-      reader.readAsDataURL(file);
     }
   }
 }

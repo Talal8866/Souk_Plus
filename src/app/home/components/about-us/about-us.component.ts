@@ -7,16 +7,14 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./about-us.component.css']
 })
 export class AboutUsComponent {
+  constructor() { }
+
   ContactForm!: FormGroup;
-
-  constructor(private fb: FormBuilder) { }
-
+  
   ngOnInit() {
     this.ContactForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required]),
     })
   }
-
-
 }

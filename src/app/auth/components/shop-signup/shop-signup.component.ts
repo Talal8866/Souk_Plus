@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth.service.service';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-shop-signup',
@@ -8,10 +8,12 @@ import { AuthServiceService } from '../../services/auth.service.service';
   styleUrls: ['./shop-signup.component.css']
 })
 export class ShopSignupComponent {
-  constructor(private service: AuthServiceService) { }
+  constructor(
+    private service: AuthServiceService
+  ) { }
 
-  shopForm!: FormGroup;
   imageUrl: string | ArrayBuffer | null = null;
+  shopForm!: FormGroup;
   showPassword = false;
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class ShopSignupComponent {
         address: this.shopForm.value.shopaddress,
         phoneNumber: this.shopForm.value.shopnumber,
         shopCategory: this.shopForm.value.shopcategory,
-        logo: this.shopForm.value.image,  // رفع مسار الصورة فقط
+        logo: this.shopForm.value.image, 
         confirmPassword: this.shopForm.value.confirmpass,
       };
 
@@ -66,7 +68,6 @@ export class ShopSignupComponent {
       reader.onload = (e) => {
         if (e.target?.result) {
           this.imageUrl = e.target.result;
-          // تخزين مسار الصورة بدلاً من تحميل الصورة نفسها
           this.shopForm.patchValue({ image: `Online Stores/uploads/${file.name}` });
         }
       };

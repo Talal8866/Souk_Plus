@@ -1,6 +1,6 @@
 <div class="container">
     <div class="img-container">
-        <img [src]="imgpath" alt="" [routerLink]="['/product-details', product._id]">
+        <img [src]="'http://localhost:3000/' + product.picture" alt="" [routerLink]="['/product-details', product._id]">
         <span [routerLink]="['/profile', product.linkedShop]"><br>{{shopName}}</span>
     </div>
     <div class="details">

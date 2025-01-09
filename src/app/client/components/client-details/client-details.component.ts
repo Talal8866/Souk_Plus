@@ -1,9 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
 import { ClientServiceService } from '../../services/client-service.service';
+import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
 import { AuthStatusService } from 'src/app/shared/services/auth-status.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-details',
@@ -12,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class ClientDetailsComponent {
   constructor(
-    private fb: FormBuilder,
-    private service_auth: AuthServiceService,
     private authStatusService: AuthStatusService,
+    private service_auth: AuthServiceService,
     private service: ClientServiceService,
+    private fb: FormBuilder,
     private router: Router
   ) { }
 

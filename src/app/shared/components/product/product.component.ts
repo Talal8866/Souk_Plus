@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ProductserviceService } from 'src/app/products/services/productservice.service';
 
 @Component({
@@ -8,18 +7,19 @@ import { ProductserviceService } from 'src/app/products/services/productservice.
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-  constructor(private product_service: ProductserviceService, private route: ActivatedRoute,) {}
+  constructor(private product_service: ProductserviceService) {}
 
+  @Output() item = new EventEmitter<{ item: any, quantity: number }>();
   @Input() product: any;
-  @Output() item = new EventEmitter();
-  shopName: string = '';
+  
   addbutton: boolean = false;
-  amount: number = 0;
+  shopName: string = '';
   imgpath: string = '';
+  amount: number = 1; 
 
   ngOnInit(): void {
     this.getShopName();
-    this.setImagePath();
+    // this.setImagePath();
   }
 
   getShopName() {
@@ -33,11 +33,12 @@ export class ProductComponent {
     }
   }
 
-  setImagePath() {
-    this.imgpath = this.product?.picture ? `http://localhost:3000/uploads/${this.product.picture.split('/').pop()}` : ''; // تكوين URL للصور
-  }
+  // setImagePath() {
+  //   this.imgpath = this.product?.picture ? `http://localhost:3000/uploads/${this.product.picture.split('/').pop()}` : '';
+  // }
 
   add() {
+    console.log('Adding to cart:', this.product, this.amount);
     this.item.emit({ item: this.product, quantity: this.amount });
   }
 }

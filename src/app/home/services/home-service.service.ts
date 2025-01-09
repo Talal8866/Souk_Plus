@@ -5,13 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HomeServiceService {
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getFeaturedProducts(){
+  getFeaturedProducts() {
     return this.http.get('http://localhost:3000/api/products/featured');
   }
 
-  getFeaturedShops(){
+  getFeaturedShops() {
     return this.http.get('http://localhost:3000/api/shops/featured');
   }
 }

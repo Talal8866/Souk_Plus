@@ -3,18 +3,14 @@
   <section class="top">
     <div class="left">
       <figure>
-        <img
-          [src]="'http://localhost:3000/' + data.picture"
-          alt="Product Image"
-        />
+        <img [src]="'http://localhost:3000/' + data.picture" alt="Product Image" />
       </figure>
     </div>
     <div class="right">
       <div class="details">
         <h1>{{ data.name }}</h1>
         <span class="dark-gray">Shop Name:</span>
-        <span class="dark-gray"
-          >Availability: {{ data.availability ? "In stock" : "Out of stock" }}
+        <span class="dark-gray">Availability: {{ data.availability ? "In stock" : "Out of stock" }}
         </span>
         <span class="dark-gray">Category: {{ data.category }} </span>
         <span class="price">{{ data.price }} S.P</span>
@@ -26,20 +22,16 @@
         </button>
         <br />
         <input type="number" class="down" [(ngModel)]="amount" />
-        <button class="add-cart down" (click)="addto_Cart()">
+        <button class="add-cart down" (click)="add()">
           Add to cart <mat-icon>shopping_cart</mat-icon>
-        </button>
+        </button>        
       </div>
     </div>
   </section>
   <section class="bottom">
     <label>Description</label>
     <hr />
-    <textarea
-      class="description"
-      value="{{ data.description }}"
-      readonly
-    ></textarea>
+    <textarea class="description" value="{{ data.description }}" readonly></textarea>
   </section>
 </main>
 <app-footer></app-footer>

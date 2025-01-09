@@ -1,6 +1,6 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { AuthStatusService } from '../../../shared/services/auth-status.service';
 
@@ -17,10 +17,10 @@ export class LoginComponent {
   ) { }
 
   loginForm!: FormGroup;
-  users: any[] = [];
   type: string = 'user';
   showPassword = false;
-
+  users: any[] = [];
+  
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.email, Validators.required]),
@@ -31,6 +31,7 @@ export class LoginComponent {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
+  
   Submit() {
     const model = {
       email: this.loginForm.value.email,

@@ -41,7 +41,7 @@
     background-color: var(--custom-white);
     border: var(--gray) 1px solid;
     width: 872px;
-    height: 406px;
+    height: auto;
     border-radius: 4px;
 }
 
@@ -84,9 +84,7 @@
 }
 
 .main .right .cart .title-bar ul :first-child {
-    position: relative;
-    right: 50px;
-    margin-right: 200px;
+    margin-right: 300px;
 }
 
 .main .right .cart hr {
@@ -100,8 +98,7 @@
     display: flex;
     align-items: center;
     margin-top: 20px;
-    margin-left: 35px;
-    column-gap: 20px;
+    column-gap: 10px;
 }
 
 .main .right .cart .products .cancel {
@@ -114,6 +111,8 @@
     color: var(--mid-gray);
     height: 24px;
     width: 24px;
+    margin-left: 20px;
+
 }
 
 .main .right .cart .products .img img {
@@ -121,9 +120,6 @@
     width: 72px;
 }
 
-.main .right .cart .products .title {
-    margin-right: 220px;
-}
 
 .main .right .cart .products .quantity input {
     border: var(--gray) 1px solid;
@@ -165,6 +161,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .main .right .cart .actions {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 .main .right .cart .actions button {
@@ -193,7 +190,7 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: var(--custom-white);
     border: var(--gray) 1px solid;
     height: 344px;
-    width: 424px;
+    width: 444px;
     margin-top: 50px;
     margin-left: 200px;
     border-radius: 4px;
@@ -204,6 +201,7 @@ input[type="number"]::-webkit-outer-spin-button {
     flex-direction: column;
     align-items: center;
     width: 424px;
+    margin-left: 10px ;
 }
 
 .main .right .totals .container .sums ul {
@@ -244,28 +242,37 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .main .right .totals .container button {
-    color: var(--custom-white);
     background-color: var(--dark-maincolor);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    color: var(--custom-white);
     text-transform: uppercase;
-    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    border: none;
     border-radius: 2px;
-    width: 376px;
-    height: 56px;
-    font-size: 16px;
     line-height: 56px;
-    column-gap: 5px;
+    font-weight: 700;
     margin-top: 25px;
+    font-size: 16px;
+    column-gap: 5px;
+    height: 56px;
+    width: 376px;
 }
 
 .main .right .totals .container .sums .total {
     color: var(--custom-black);
     padding-right: 333px;
-    size: 16px;
     line-height: 24px;
+    size: 16px;
+    padding: 0;
+}
 
+.main .right .totals .container .sums .pay{
+    margin-left: 255px;
+}
+
+.main .right .cart .products .title {
+    width: 200px;
+    margin-right: 100px;
 }

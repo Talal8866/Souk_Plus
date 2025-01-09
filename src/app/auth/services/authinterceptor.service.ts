@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { AuthServiceService } from './auth.service.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthServiceService } from './auth.service.service';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthServiceService, private router: Router) {}
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();

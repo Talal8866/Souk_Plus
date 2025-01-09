@@ -8,7 +8,9 @@ import { ShopServiceService } from '../../services/shop-service.service';
   styleUrls: ['./all-shops.component.css']
 })
 export class AllShopsComponent {
-  constructor(private product_service: ProductserviceService, private shop_service: ShopServiceService) { }
+  constructor(
+    private product_service: ProductserviceService,
+    ) { }
 
   categories: any[] = [];
   shops: any[] = [];

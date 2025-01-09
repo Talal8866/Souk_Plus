@@ -9,7 +9,10 @@ import { AuthServiceService } from '../../services/auth.service.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  constructor(private routes: Router, private service: AuthServiceService) { }
+  constructor(
+     private service: AuthServiceService
+    ) { }
+
   signupForm!: FormGroup;
   showPassword = false;
 

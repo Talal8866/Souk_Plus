@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   private currentUserSubject = new BehaviorSubject<any>(null);
   currentUser$ = this.currentUserSubject.asObservable();
-  private token: string = '';
   private currentUser: any = null;
+  private token: string = '';
 
   loginuser_service(model: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/users/login', model);
@@ -85,8 +88,8 @@ export class AuthServiceService {
   }
 
   logout() {
-    localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }

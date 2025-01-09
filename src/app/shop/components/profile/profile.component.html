@@ -3,7 +3,7 @@
     <div class="landing">
         <div class="container">
             <div class="img">
-                <img src="{{name.logo}}" alt="">
+                <img [src]="getImagePath(name.logo)">
             </div>
             <div class="details">
                 <h1>{{name.name}}</h1>
@@ -20,3 +20,8 @@
     </div>
 </section>
 <app-footer></app-footer>
+
+
+<div class="img">
+    <img src="http://localhost:3000/path-to-your-image.jpg" alt="">
+</div>
