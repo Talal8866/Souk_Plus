@@ -27,11 +27,14 @@
     </ul>
   </nav>
 
-  <div class="search-results" *ngIf="searchResults.length > 0">
-    <hr>
-    <ul>
-      <li *ngFor="let result of searchResults">{{ result.name }}</li>
-    </ul>
+  <div class="results-container">
+    <div class="search-results" *ngIf="searchResults.length > 0">
+      <ul>
+        <li *ngFor="let result of searchResults" (click)="onResult(result)">{{ result.name }}  </li>
+      </ul>
+    </div>
   </div>
+  
   <div class="search-error" *ngIf="searchError">{{ searchError }}</div>
 </header>
+

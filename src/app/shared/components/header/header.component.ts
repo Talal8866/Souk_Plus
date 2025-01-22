@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { AuthStatusService } from '../../services/auth-status.service';
 import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
 import { ClientServiceService } from 'src/app/client/services/client-service.service';
@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   isShopOwner: boolean = false;
   isClient: boolean = false;
+  searchInputStyle: any = {}; 
   searchResults: any[] = [];
   searchError: string = '';
   currentUser: any = null;
@@ -28,7 +29,6 @@ export class HeaderComponent implements OnInit {
   shops: any[] = [];
   shop: any = {};
   user: any = {};
-  searchInputStyle: any = {}; // Add this property to hold dynamic styles
 
   ngOnInit(): void {
     this.authStatusService.currentUser$.subscribe(user => {
@@ -119,8 +119,8 @@ export class HeaderComponent implements OnInit {
 
   onFocus() {
     this.searchInputStyle = {
-      border: '2px solid blue',
-      backgroundColor: '#f0f0f0',
+      border: '2px solid #001523',
+      backgroundColor: '#EBEBEB',
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
       outline: 'none'
     };
@@ -133,6 +133,10 @@ export class HeaderComponent implements OnInit {
       boxShadow: '',
       outline: ''
     };
+  }
+
+  onResult(result: any) {
+    this.router.navigate(['product-details', result._id]);
   }
 
   logout() {
