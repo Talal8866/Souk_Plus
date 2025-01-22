@@ -1,0 +1,29 @@
+<app-header></app-header>
+<form [formGroup]="addProductForm" class="main">
+    <section class="top">
+        <div class="left">
+            <div>
+                <input type="file" id="file-input" (change)="onFileSelected($event)" formControlName="image">
+                <img [src]="imageUrl" *ngIf="imageUrl" alt="Selected Image">
+            </div>
+        </div>
+        <div class="right">
+            <div class="details">
+                <h1>add a product</h1>
+                <input type="text" formControlName="productname" placeholder="product name">
+                <input type="text" value="" formControlName="category" placeholder="category">
+                <input type="text" formControlName="price" placeholder="add price">
+                <input type="text" formControlName="availability" placeholder="Availability">
+                <!-- <input type="number" formControlName="quantity" placeholder="add quantity"> -->
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="bottom">
+        <label>Description</label>
+        <hr>
+        <input type="text" class="description" formControlName="description" placeholder="Add Description">
+    </section>
+    <button (click)="submitAdd()" class="submit" [disabled]="!addProductForm.valid">add product</button>
+</form>
+<app-footer></app-footer>

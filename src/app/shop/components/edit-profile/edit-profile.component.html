@@ -1,0 +1,94 @@
+<app-header></app-header>
+<section class="maincontainer top">
+    <aside class="left">
+        <nav>
+            <ul>
+                <li routerLink="/client-details"><mat-icon>settings</mat-icon>setting</li>
+                <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="landing">
+        <div class="container">
+            <div class="img">
+                <img [src]="getImagePath(name.logo)">
+                <button class="add-img">+</button>
+            </div>
+            <div class="details" [formGroup]="changedescForm">
+                <h1>{{name.name}}</h1>
+                <input value="{{name.description}}" formControlName="newdesc">
+                <span> <mat-icon>mail</mat-icon>{{name.email}}</span>
+                <span> <mat-icon>call</mat-icon>{{name.phoneNumber}}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="add-product">
+        <mat-icon routerLink="/add-product">add</mat-icon>
+        <span routerLink="/add-product">add a product</span>
+    </div>
+    <div class="product-container" *ngFor=" let item of shopProducts">
+        <button class="edit" [routerLink]="['/update-product', item._id]"><mat-icon>edit</mat-icon></button>
+        <button class="delete" (click)="delete_Product(item)"><mat-icon>close</mat-icon></button>
+        <app-product [product]="item" routerLink="/product-details/{{item._id}}"></app-product>
+    </div>
+</section>
+
+<section class="main">
+    <div class="right" id="settings">
+        <div class="topform">
+            <span>account settings</span>
+            <hr>
+            <form [formGroup]="editprofileForm">
+                <label for="shopname">Shopname</label>
+                <input type="text" formControlName="shopname" id="shopname" value="{{name.name}}">
+                <label for="shopcategory">Shop Category</label>
+                <input type="text" formControlName="shopcategory" id="shopcategory" value="{{name.category}}">
+                <label for="email">Email Address</label>
+                <input type="email" formControlName="email" id="email" value="{{name.email}}">
+                <label for="address">Address</label>
+                <input type="text" formControlName="address" id="address" value="{{name.address}}">
+                <label for="number">Phone Number</label>
+                <input type="text" formControlName="number" id="number" value="{{name.phoneNumber}}">
+                <button [disabled]="editprofileForm.invalid" (click)="Submit_Changes()">save changes</button>
+            </form>
+        </div>
+        <div class="bottomform">
+            <span>change password</span>
+            <hr>
+            <form [formGroup]="changepassForm">
+                <label for="currentPassword">Current Password</label>
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="currentPassword"
+                        id="currentPassword" value="{{name.password}}">
+                </div>
+
+                <label for="pass">Password</label>
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="newpass"
+                        id="pass" placeholder="8+ Characters">
+                </div>
+
+                <label for="confirmpass">Confirm Password</label>
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="confirmpass"
+                        id="confirmpass">
+                </div>
+                <button
+                    [disabled]="changepassForm.invalid || (changepassForm.value.newpass ==! changepassForm.value.confirmpass)"
+                    (click)="Submit_pass()">change password
+                </button>
+            </form>
+        </div>
+        <div class="contact">
+            <p>Feel free to reach out if you have any questions</p>
+            <span><a routerLink="/about-us" fragment="contactus">Contact Us</a></span>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

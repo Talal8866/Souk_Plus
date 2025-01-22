@@ -1,0 +1,27 @@
+<app-header></app-header>
+<form [formGroup]="updateProductForm" class="main">
+    <section class="top">
+        <div class="left">
+            <input type="file" id="file-input" (change)="onFileSelected($event)">
+            <img [src]="imageUrl" *ngIf="imageUrl" alt="Selected Image">
+        </div>
+        <div class="right">
+            <div class="details">
+                <h1>Update Product</h1>
+                <input formControlName="productname" placeholder="Product Name">
+                <input formControlName="category" placeholder="Category">
+                <input formControlName="price" placeholder="Add Price">
+                <input formControlName="availability" placeholder="Availability">
+                <!-- <input formControlName="quantity" placeholder="Add Quantity" type="number"> -->
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="bottom">
+        <label>Description</label>
+        <hr>
+        <input class="description" formControlName="description" placeholder="Add Description">
+    </section>
+    <button (click)="submitUpdate()" class="submit">Save Changes</button>
+</form>
+<app-footer></app-footer>

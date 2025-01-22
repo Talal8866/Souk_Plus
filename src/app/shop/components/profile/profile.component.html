@@ -1,0 +1,27 @@
+<app-header></app-header>
+<section class="maincontainer">
+    <div class="landing">
+        <div class="container">
+            <div class="img">
+                <img [src]="getImagePath(name.logo)">
+            </div>
+            <div class="details">
+                <h1>{{name.name}}</h1>
+                <p>{{name.description}}</p>
+                <span> <mat-icon>mail</mat-icon>{{name.email}}</span>
+                <span> <mat-icon>call</mat-icon>{{name.phoneNumber}}</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="shops-products">
+    <div class="products" *ngFor=" let item of shopProducts">
+        <app-product [product]="item" routerLink="/product-details/{{item.id}}"></app-product>
+    </div>
+</section>
+<app-footer></app-footer>
+
+
+<div class="img">
+    <img src="http://localhost:3000/path-to-your-image.jpg" alt="">
+</div>

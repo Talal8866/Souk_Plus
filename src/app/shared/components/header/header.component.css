@@ -1,0 +1,134 @@
+.container {
+    width: 100%;
+    height: 101px;
+    background-color: var(--maincolor);
+}
+
+.header-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.container .header-nav .logo img {
+    width: 200px;
+    height: 201px;
+    cursor: pointer;
+}
+
+input {
+    background-color: transparent;
+    border: solid var(--custom-black) 2px;
+    border-radius: 20px;
+    width: 433px;
+    height: 39px;
+}
+
+input::placeholder {
+    color: var(gray);
+    font-size: 11px;
+    line-height: 24px;
+    padding-right: 20px;
+}
+
+input::content {
+    padding-left: 20px;
+}
+
+header .header-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+}
+
+header .header-nav ul li {
+    color: var(--custom-black);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    column-gap: 5px;
+}
+
+li {
+    cursor: pointer;
+}
+
+a {
+    color: var(--custom-black);
+    text-decoration: none;
+}
+
+.container .bellow-nav {
+    width: auto;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.container .bellow-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.container .bellow-nav ul li {
+    color: var(--custom-black);
+    font-size: 24px;
+    margin-left: 35px;
+    font-weight: 300;
+}
+
+.container .header-nav ul .search {
+    position: relative;
+    right: 290px;
+}
+
+.results-container{
+    position: relative;
+    left: 573px;
+    bottom: 88px;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EBEBEB;
+    border: #001523 2px solid;
+    width: 433px;
+    height: auto;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 10;
+    padding-bottom: 20px;
+}
+
+.search-results ul {
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+}
+
+.search-results ul li {
+    cursor: pointer;
+    margin-top: 10px;
+    max-width: 367px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+/* 
+.search-container {
+    position: relative;
+    display: inline-block;
+} */
+
+/*   
+  .search-container.active {
+  } */

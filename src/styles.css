@@ -1,0 +1,31 @@
+:root {
+    --maincolor: #98D8FE;
+    --dark-maincolor: #48BAFD;
+    --pink: #FE9E65;
+    --ligh-pink: #FEBE98;
+    --gray: #EBEBEB;
+    --mid-gray: #77878F;
+    --dark-gray: #475156;
+    --custom-white: #FAFAFA;
+    --custom-black: #001523;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Public-Sans;
+}
+
+@font-face {
+    font-family: Public-Sans;
+    src: url(../src/assets/Fonts/PublicSans-VariableFont_wght.ttf);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
